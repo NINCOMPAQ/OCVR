@@ -45,7 +45,7 @@ def build_collection(
         experiment.model.huggingface_id,
         revision=experiment.model.revision,
     )
-    dimension = model.get_sentence_embedding_dimension()
+    dimension = model.get_embedding_dimension()
     if dimension != experiment.model.dimension:
         raise ValueError(
             f"Model dimension {dimension} does not match configured {experiment.model.dimension}"
