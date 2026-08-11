@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ontology-retrieval"
+version = "0.1.0"
+description = "Reproducible constrained vector retrieval experiments over ontology-derived entity cards"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "qdrant-client==1.17.0",
+  "sentence-transformers==5.4.0",
+]
+
+[project.optional-dependencies]
+extract = ["rdflib==7.6.0"]
+dev = ["pytest>=8.3,<9", "ruff>=0.12,<1"]
+
+[project.scripts]
+ontology-retrieval = "ontology_retrieval.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ontology_retrieval"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

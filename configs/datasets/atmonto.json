@@ -1,0 +1,13 @@
+{
+  "id": "atmonto-enriched-v1",
+  "filename": "entities_enriched.jsonl",
+  "records": 36655,
+  "bytes": 32034257,
+  "sha256": "22880d1a37838869d693e6b97b9932ff53dd23e89ea4f1f688d2827227a6ad7d",
+  "artifact_url": null,
+  "included_in_repository": true,
+  "text_field": "card_text",
+  "payload_fields": ["iri", "label", "types", "types_closure"],
+  "relevance_fields": ["types_closure", "types"],
+  "benchmark": "../../benchmarks/atmonto.json"
+}

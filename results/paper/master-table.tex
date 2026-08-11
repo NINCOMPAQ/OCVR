@@ -1,0 +1,72 @@
+\begin{longtable}{llrrrr}
+\caption{Master comparison of retrieval strategies across ontologies and embedding models.}
+\label{tab:appendix_master_results}\\
+
+\toprule
+\textbf{Strategy} & \textbf{Retrieval Limit} & \textbf{valid@5} & \textbf{success@5} & \textbf{time (s)} & \textbf{examined} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Strategy} & \textbf{Retrieval Limit} & \textbf{valid@5} & \textbf{success@5} & \textbf{time (s)} & \textbf{examined} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\multicolumn{6}{l}{\textbf{ATMONTO, all-MiniLM-L6-v2}}\\
+Unconstrained & 5 & 0.6560 & 0.5600 & 0.0081 & 5 \\
+Pre-hoc & 5 & 1.0000 & 1.0000 & 0.0178 & 5 \\
+Post-hoc & 25 & 0.7280 & 0.6800 & 0.0102 & 25 \\
+Post-hoc & 100 & 0.8640 & 0.8400 & 0.0218 & 45 \\
+Post-hoc & 200 & 0.8840 & 0.8600 & 0.0303 & 61 \\
+Post-hoc & 400 & 0.8960 & 0.8600 & 0.0509 & 89 \\
+Post-hoc & 2000 & 0.9640 & 0.9400 & 0.1962 & 228 \\
+\addlinespace
+\multicolumn{6}{l}{\textbf{ATMONTO, bge-large-en-v1.5}}\\
+Unconstrained & 5 & 0.8480 & 0.7800 & 0.0068 & 5 \\
+Pre-hoc & 5 & 1.0000 & 1.0000 & 0.0218 & 5 \\
+Post-hoc & 25 & 0.9240 & 0.9200 & 0.0111 & 25 \\
+Post-hoc & 100 & 0.9400 & 0.9400 & 0.0147 & 31 \\
+Post-hoc & 200 & 0.9400 & 0.9400 & 0.0202 & 37 \\
+Post-hoc & 400 & 0.9440 & 0.9400 & 0.0294 & 49 \\
+Post-hoc & 2000 & 1.0000 & 1.0000 & 0.0355 & 62 \\
+\addlinespace
+\multicolumn{6}{l}{\textbf{Brick, all-MiniLM-L6-v2}}\\
+Unconstrained & 5 & 0.6720 & 0.5400 & 0.0073 & 5 \\
+Pre-hoc & 5 & 1.0000 & 1.0000 & 0.0138 & 5 \\
+Post-hoc & 25 & 0.7600 & 0.7400 & 0.0109 & 25 \\
+Post-hoc & 100 & 0.8880 & 0.8600 & 0.0214 & 42 \\
+Post-hoc & 200 & 0.9360 & 0.9000 & 0.0281 & 53 \\
+Post-hoc & 400 & 0.9640 & 0.9400 & 0.0431 & 70 \\
+Post-hoc & 2000 & 0.9800 & 0.9800 & 0.0811 & 104 \\
+\addlinespace
+\multicolumn{6}{l}{\textbf{Brick, bge-large-en-v1.5}}\\
+Unconstrained & 5 & 0.7640 & 0.6000 & 0.0081 & 5 \\
+Pre-hoc & 5 & 1.0000 & 1.0000 & 0.0151 & 5 \\
+Post-hoc & 25 & 0.8600 & 0.8400 & 0.0139 & 25 \\
+Post-hoc & 100 & 0.9240 & 0.9200 & 0.0185 & 36 \\
+Post-hoc & 200 & 0.9400 & 0.9400 & 0.0249 & 43 \\
+Post-hoc & 400 & 0.9400 & 0.9400 & 0.0379 & 55 \\
+Post-hoc & 2000 & 0.9640 & 0.9600 & 0.1405 & 142 \\
+\addlinespace
+\multicolumn{6}{l}{\textbf{DBpedia US Civic Geography, all-MiniLM-L6-v2}}\\
+Unconstrained & 5 & 0.6429 & 0.4286 & 0.0097 & 5 \\
+Pre-hoc & 5 & 1.0000 & 1.0000 & 0.0218 & 5 \\
+Post-hoc & 25 & 0.8762 & 0.8571 & 0.0188 & 25 \\
+Post-hoc & 100 & 0.9381 & 0.8810 & 0.0252 & 35.71 \\
+Post-hoc & 200 & 0.9667 & 0.9286 & 0.0316 & 44.64 \\
+Post-hoc & 400 & 0.9762 & 0.9762 & 0.0349 & 51.19 \\
+Post-hoc & 2000 & 0.9762 & 0.9762 & 0.0873 & 89.29 \\
+\addlinespace
+\multicolumn{6}{l}{\textbf{DBpedia US Civic Geography, bge-large-en-v1.5}}\\
+Unconstrained & 5 & 0.6238 & 0.3571 & 0.0113 & 5 \\
+Pre-hoc & 5 & 1.0000 & 1.0000 & 0.0252 & 5 \\
+Post-hoc & 25 & 0.9000 & 0.8571 & 0.0174 & 25 \\
+Post-hoc & 100 & 0.9524 & 0.9524 & 0.0215 & 32.74 \\
+Post-hoc & 200 & 0.9762 & 0.9762 & 0.0262 & 37.50 \\
+Post-hoc & 400 & 0.9762 & 0.9762 & 0.0320 & 42.26 \\
+Post-hoc & 2000 & 0.9905 & 0.9762 & 0.0798 & 80.36 \\
+
+\end{longtable}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "protocol": "paper-v1",
+  "datasets": {
+    "atmonto-enriched-v1": "22880d1a37838869d693e6b97b9932ff53dd23e89ea4f1f688d2827227a6ad7d",
+    "brick-mortardata-enriched-v1": "ebe4d0579ceb5e6d5828ee335e7f516bbc5967ff8be42aecec2744af0bed0007",
+    "dbpedia-us-civic-places-enriched-v1": "1c9fc4b32266b9d45c46db2f7425d3b0288845d3368834751fdc30589b688c53"
+  },
+  "models": {
+    "all-MiniLM-L6-v2": "c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+    "bge-large-en-v1.5": "d4aa6901d3a41ba39fb536a557fa166f842b0e09"
+  },
+  "qdrant_image": "qdrant/qdrant@sha256:f1c7272cdac52b38c1a0e89313922d940ba50afd90d593a1605dbbc214e66ffb",
+  "paper_environment_packages": {
+    "sentence-transformers": "5.4.0",
+    "qdrant-client": "1.17.0",
+    "rdflib": "7.6.0",
+    "torch": "2.11.0",
+    "transformers": "5.5.3"
+  },
+  "query_counts": {
+    "atmonto": 50,
+    "brick": 50,
+    "dbpedia-us-civic-places": 42
+  },
+  "notes": [
+    "Historical table values were transcribed from the paper and are rendered from master-results.json.",
+    "The DBpedia paper-v1 denominator is 42; eight queries are planned only for a separate benchmark-v2."
+  ]
+}

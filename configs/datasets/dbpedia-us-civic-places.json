@@ -1,0 +1,13 @@
+{
+  "id": "dbpedia-us-civic-places-enriched-v1",
+  "filename": "dbpedia_us_civic_places_entities_enriched.jsonl",
+  "records": 23189,
+  "bytes": 18864073,
+  "sha256": "1c9fc4b32266b9d45c46db2f7425d3b0288845d3368834751fdc30589b688c53",
+  "artifact_url": null,
+  "included_in_repository": true,
+  "text_field": "card_text",
+  "payload_fields": ["iri", "label", "types", "types_closure", "target_classes", "country"],
+  "relevance_fields": ["types_closure", "types", "target_classes"],
+  "benchmark": "../../benchmarks/dbpedia-us-civic-places-natural.json"
+}

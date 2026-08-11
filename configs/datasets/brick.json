@@ -1,0 +1,13 @@
+{
+  "id": "brick-mortardata-enriched-v1",
+  "filename": "brick_entities_enriched.jsonl",
+  "records": 19388,
+  "bytes": 15130345,
+  "sha256": "ebe4d0579ceb5e6d5828ee335e7f516bbc5967ff8be42aecec2744af0bed0007",
+  "artifact_url": null,
+  "included_in_repository": true,
+  "text_field": "card_text",
+  "payload_fields": ["iri", "label", "building", "bucket", "types", "types_closure"],
+  "relevance_fields": ["types_closure", "types"],
+  "benchmark": "../../benchmarks/brick.json"
+}

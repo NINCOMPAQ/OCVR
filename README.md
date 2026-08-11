@@ -1,0 +1,252 @@
+# Ontology Retrieval
+
+Reproducible experiments comparing unconstrained, pre-hoc constrained, and post-hoc constrained vector retrieval over ontology-derived entity cards.
+
+The paper evaluates three datasets—ATMONTO, Brick/Mortar, and a DBpedia US civic-places subset—with two Hugging Face embedding models:
+
+| Dataset | all-MiniLM-L6-v2 | bge-large-en-v1.5 |
+|---|---:|---:|
+| ATMONTO | 36,655 entities | 36,655 entities |
+| Brick/Mortar | 19,388 entities | 19,388 entities |
+| DBpedia US civic places | 23,189 entities | 23,189 entities |
+
+The repository stores code, benchmark queries, configuration, checksums, compact results, and the three exact pre-embedding JSONL subsets through Git LFS. It does not store vector embeddings. Users build all six Qdrant collections locally from the included subsets and pinned Hugging Face models.
+
+> **Release status:** the experiment reconstruction path is self-contained once this folder is committed and cloned with Git LFS. The remaining public-release blockers are the repository URL, code license, citation metadata, clean-machine rehearsal, and full upstream extraction migration.
+
+## What is reproducible
+
+Two paths are supported:
+
+- **Fast paper reproduction:** clone the exact entity-card subsets with Git LFS, verify their hashes, embed them, run the experiments, and render the table.
+- **Full provenance reproduction:** rebuild those subsets from pinned upstream sources, confirm their hashes, then follow the fast path.
+
+The fast path is the primary way to reproduce the paper. Full extraction provenance is being migrated from the legacy scripts into the `extract` package.
+
+## Requirements
+
+- Python 3.11 or newer
+- Docker Desktop or another Docker Compose implementation
+- Enough disk space for the three datasets, two embedding models, and six vector collections
+- Internet access for the initial dataset/model downloads
+- A GPU is optional; CPU indexing is supported but BGE indexing can take considerably longer
+
+Installation and model sources:
+
+- Python: https://www.python.org/downloads/
+- Git: https://git-scm.com/downloads
+- Git LFS: https://git-lfs.com/
+- Docker Desktop: https://www.docker.com/products/docker-desktop/
+- Qdrant container image: https://hub.docker.com/r/qdrant/qdrant
+- MiniLM at the pinned revision: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/tree/c9745ed1d9f207416be6d2e6f8de32d1f16199bf
+- BGE at the pinned revision: https://huggingface.co/BAAI/bge-large-en-v1.5/tree/d4aa6901d3a41ba39fb536a557fa166f842b0e09
+
+Commands below use PowerShell. On macOS/Linux, activate the environment with `source .venv/bin/activate` instead.
+
+## Installation
+
+```powershell
+git clone git@github.com:NINCOMPAQ/OCVR.git
+Set-Location ontology-retrieval
+git lfs install
+git lfs pull
+
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e .
+```
+
+For development and extraction work:
+
+```powershell
+python -m pip install -e ".[dev,extract]"
+```
+
+## 1. Verify the included subsets
+
+The exact pre-embedding subsets are included under `datasets/` using Git LFS. A normal clone with `git lfs pull` obtains them; no separate dataset host or manual copy is required.
+
+Verify byte-for-byte identity, record counts, required fields, and unique IRIs:
+
+```powershell
+ontology-retrieval data verify configs/datasets/atmonto.json
+ontology-retrieval data verify configs/datasets/brick.json
+ontology-retrieval data verify configs/datasets/dbpedia-us-civic-places.json
+```
+
+Expected inputs:
+
+| File | Records | SHA-256 |
+|---|---:|---|
+| `entities_enriched.jsonl` | 36,655 | `22880d1a37838869d693e6b97b9932ff53dd23e89ea4f1f688d2827227a6ad7d` |
+| `brick_entities_enriched.jsonl` | 19,388 | `ebe4d0579ceb5e6d5828ee335e7f516bbc5967ff8be42aecec2744af0bed0007` |
+| `dbpedia_us_civic_places_entities_enriched.jsonl` | 23,189 | `1c9fc4b32266b9d45c46db2f7425d3b0288845d3368834751fdc30589b688c53` |
+
+See [docs/data.md](docs/data.md) for schemas and provenance status.
+
+Official upstream reference pages are recorded for auditability and future full regeneration. The included JSONL files remain the exact inputs for reproducing the paper:
+
+- NASA ATMONTO: https://data.nasa.gov/dataset/the-nasa-air-traffic-management-ontology-atmonto
+- Brick downloads and Mortar reference models: https://brickschema.org/resources/
+- Mortar graph repository: https://huggingface.co/datasets/gtfierro/mortargraphs
+- DBpedia resources: https://www.dbpedia.org/resources/
+- DBpedia versioned data catalog: https://databus.dbpedia.org/dbpedia/collections/latest-core
+
+The complete external-link inventory and byte-identity caveats are in [docs/url-audit.md](docs/url-audit.md).
+
+## 2. Start Qdrant
+
+```powershell
+docker compose up -d
+docker compose ps
+```
+
+The Compose file pins the image digest recovered from the paper environment and stores data in a named volume. Qdrant is available at `http://localhost:6333`.
+
+To stop it without deleting data:
+
+```powershell
+docker compose stop
+```
+
+Do not use `docker compose down --volumes` unless you intentionally want to delete all locally constructed collections.
+
+## 3. Build the six collections
+
+```powershell
+ontology-retrieval index configs/experiments/atmonto-minilm.json
+ontology-retrieval index configs/experiments/atmonto-bge.json
+ontology-retrieval index configs/experiments/brick-minilm.json
+ontology-retrieval index configs/experiments/brick-bge.json
+ontology-retrieval index configs/experiments/dbpedia-minilm.json
+ontology-retrieval index configs/experiments/dbpedia-bge.json
+```
+
+Index construction performs dataset verification first. It refuses to overwrite an existing collection unless `--replace` is explicitly supplied. Point IDs are deterministic UUIDs derived from dataset ID and entity IRI.
+
+Verify every collection:
+
+```powershell
+Get-ChildItem configs/experiments/*.json | ForEach-Object {
+    ontology-retrieval verify-index $_.FullName
+}
+```
+
+Expected dimensions are 384 for MiniLM and 1,024 for BGE. All collections use cosine distance. The indexer creates keyword payload indexes for configured relevance fields.
+
+### Model revisions
+
+The exact cached Hugging Face revisions used by the original environment are pinned in `configs/models/`:
+
+- MiniLM: `c9745ed1d9f207416be6d2e6f8de32d1f16199bf`
+- BGE: `d4aa6901d3a41ba39fb536a557fa166f842b0e09`
+
+Direct Python dependencies are pinned in `pyproject.toml`. Package versions recovered from the paper environment, including important transitive ML dependencies, are recorded in `results/paper/provenance.json`.
+
+## 4. Run the experiments
+
+Create one structured result per dataset/model pair:
+
+```powershell
+New-Item -ItemType Directory -Force results/runs
+
+ontology-retrieval evaluate configs/experiments/atmonto-minilm.json --output results/runs/atmonto-minilm.json
+ontology-retrieval evaluate configs/experiments/atmonto-bge.json --output results/runs/atmonto-bge.json
+ontology-retrieval evaluate configs/experiments/brick-minilm.json --output results/runs/brick-minilm.json
+ontology-retrieval evaluate configs/experiments/brick-bge.json --output results/runs/brick-bge.json
+ontology-retrieval evaluate configs/experiments/dbpedia-minilm.json --output results/runs/dbpedia-minilm.json
+ontology-retrieval evaluate configs/experiments/dbpedia-bge.json --output results/runs/dbpedia-bge.json
+```
+
+Each file contains per-query results and aggregate summaries. In addition to the paper columns, it records mean similarity, Qdrant request count, and total candidates transferred.
+
+See [docs/experiments.md](docs/experiments.md) for exact metric definitions and interpretation cautions.
+
+## 5. Regenerate the paper table
+
+The historical paper values live in `results/paper/master-results.json`. Render them with:
+
+```powershell
+ontology-retrieval render results/paper/master-results.json `
+    --csv results/paper/master-results.csv `
+    --latex results/paper/master-table.tex
+```
+
+The generated LaTeX uses six columns. This corrects the legacy table's seven-column declaration for six-column rows.
+
+Both surviving DBpedia collections have already been exercised through the new evaluator, with exact agreement on all displayed deterministic paper values. See [results/paper/VALIDATION.md](results/paper/VALIDATION.md).
+
+To validate and combine six newly generated runs:
+
+```powershell
+ontology-retrieval assemble `
+    results/runs/atmonto-minilm.json `
+    results/runs/atmonto-bge.json `
+    results/runs/brick-minilm.json `
+    results/runs/brick-bge.json `
+    results/runs/dbpedia-minilm.json `
+    results/runs/dbpedia-bge.json `
+    --output results/runs/master-results.json
+```
+
+The command rejects missing, duplicate, or unexpected dataset/model combinations and requires all 42 aggregate rows. Render the reproduced master file with the same `render` command shown above.
+
+Compare deterministic values with the historical paper baseline (timing is intentionally excluded):
+
+```powershell
+ontology-retrieval compare `
+    results/runs/master-results.json `
+    results/paper/master-results.json
+```
+
+## Testing
+
+```powershell
+python -m pytest
+ruff check .
+python scripts/verify_release.py --allow-unpublished-data
+```
+
+Unit tests do not download models or full datasets. Full indexing and evaluation are integration workflows because they require Qdrant, model weights, and the research datasets.
+
+## Repository layout
+
+```text
+benchmarks/          Paper query suites as data
+configs/datasets/   Dataset identity, schema, hashes, and provenance
+configs/models/     Hugging Face model and embedding settings
+configs/experiments/Six paper-v1 experiment combinations
+docs/               Data, protocol, reproduction, and development notes
+results/paper/      Frozen historical results and generated table
+src/                Consolidated implementation
+tests/              Small deterministic unit tests
+```
+
+## Reproducibility boundaries
+
+- Semantic/result metrics should reproduce from identical datasets, models, and Qdrant configuration.
+- Historical timings are evidence from the original environment, not portable constants.
+- Query embedding time is excluded from the paper's retrieval timing.
+- Pre-hoc validity uses the same type metadata as its filter, so perfect type-validity is expected when five matching entities exist.
+- Qdrant collections and embeddings are derived artifacts and are not required downloads.
+
+## Release blockers
+
+Before making this repository public:
+
+- choose and add the code license;
+- confirm redistribution rights for all three entity-card datasets;
+- confirm redistribution terms and ensure all three Git LFS objects are pushed;
+- migrate and test upstream extraction adapters;
+- add authors, paper metadata, and repository URL to `CITATION.cff`;
+- validate the historical baseline and newly rebuilt metrics;
+- add a clean-machine release rehearsal and CI workflow.
+
+After the paper-v1 release is preserved, a separate benchmark-v2 task will add eight DBpedia queries so all three suites contain 50. Paper-v1 will remain fixed at 42 DBpedia queries for exact comparison with the published table.
+
+The detailed migration sequence is maintained in the parent workspace's `CLEANUP_AND_RELEASE_PLAN.md` while the new project is being assembled.
+
+## Citation and licensing
+
+Citation metadata is provisional in `CITATION.cff`. No code license is asserted yet because that choice belongs to the project owners. Dataset and model licenses remain governed by their respective upstream projects even when derived subsets are redistributed.

@@ -1,0 +1,158 @@
+{
+  "id": "atmonto-paper-v1-source-files",
+  "status": "recovered-local-source-manifest",
+  "upstream_url": "https://data.nasa.gov/dataset/the-nasa-air-traffic-management-ontology-atmonto",
+  "download_status": "The official landing page is available, but its current resource link does not expose the 29 paper source files as a verified immutable download. Publish the exact source bundle or rely on the exact derived entity-card artifact.",
+  "files": [
+    {
+      "path": "acInst.ttl",
+      "bytes": 30082,
+      "sha256": "64104f7173da4031b917c97b329c86baf73575dc213459b5e9a4fb180d25574e"
+    },
+    {
+      "path": "acManufInst.ttl",
+      "bytes": 137982,
+      "sha256": "13ae45274c7402e55f872a500c13dc7057cc069bdf8b74003f0540d5c8751e21"
+    },
+    {
+      "path": "acModelInst.ttl",
+      "bytes": 2724049,
+      "sha256": "64c27b3946fbe40f8a5a6e0fa8fc42b61faa0b9a9435b00e608885a219aaea20"
+    },
+    {
+      "path": "airlineInst.ttl",
+      "bytes": 299611,
+      "sha256": "00965e6e3914ad26b41f3639aabd7eef832860c8d4de120ea6acc61f68f0679e"
+    },
+    {
+      "path": "airportInst.ttl",
+      "bytes": 6396201,
+      "sha256": "5b9db01fb32da34cf0140b0f1fb33debe8ef198b6b1cdafe7e75a3b5bc1e1d2f"
+    },
+    {
+      "path": "ARTCCLocationInst.ttl",
+      "bytes": 362576,
+      "sha256": "0523514db382077710c976b931dd570b6b81f9d7405010c9dbe838fd3acf4068"
+    },
+    {
+      "path": "ASPMinst.ttl",
+      "bytes": 5517658,
+      "sha256": "3fbdb291b8aa65ce4610909682914d90c66b91971a8e48965985e08b48969ea6"
+    },
+    {
+      "path": "ATM.ttl",
+      "bytes": 64334,
+      "sha256": "94081baaff4fdcfe9ec0534784700f46fd08e19e377395917fb1b085c5f6e322"
+    },
+    {
+      "path": "ATMinst.ttl",
+      "bytes": 24495,
+      "sha256": "67e0119f10c37673ad44d73a430cc92a652cb9cd60b1684b435c09660c50478b"
+    },
+    {
+      "path": "atmonto.ttl",
+      "bytes": 8670,
+      "sha256": "92294a289a7991652ae129e35a54185c6d1aa57834d2167f1265480aa36380af"
+    },
+    {
+      "path": "atmontoCore.ttl",
+      "bytes": 7554,
+      "sha256": "3e99051de7582cea2875fc364bc0e31e767f149edabd57162d0bbb9376af0c7a"
+    },
+    {
+      "path": "atmontoPlus.ttl",
+      "bytes": 8143,
+      "sha256": "152538e43fdb1c071f5127edac5f67e03744cb1ab46c0022d98ff233366d816a"
+    },
+    {
+      "path": "data.ttl",
+      "bytes": 41779,
+      "sha256": "80dafb22d9c4c4b3b52a15eee3c5201ed690d8c79e2221f417ab98f5384b7e24"
+    },
+    {
+      "path": "dataInst.ttl",
+      "bytes": 13103,
+      "sha256": "bdc16c79b09c6af027262547fe6eaa7c532dc1ebef14097ca3597ae91c18c331"
+    },
+    {
+      "path": "dayInst.ttl",
+      "bytes": 446596,
+      "sha256": "86faf0ae103f394c08baae7106070c7f95297aca7f0de7ab48c4c084c1d60941"
+    },
+    {
+      "path": "equipment.ttl",
+      "bytes": 15134,
+      "sha256": "82436e1feeae50bb045e5289795d60aed6d1d1ddceb19d94b2015cce232b2b5d"
+    },
+    {
+      "path": "equipmentInst.ttl",
+      "bytes": 4242,
+      "sha256": "358540b96fe7371c64db96d4b5a0a6e9a42a87de6a47be56ea5bec8e7ef96651"
+    },
+    {
+      "path": "fixInst.ttl",
+      "bytes": 26419240,
+      "sha256": "99e41abb9e102b6656192d1e9fb712149145715e3c3d0941b344443ff4eb0733"
+    },
+    {
+      "path": "flightInst.ttl",
+      "bytes": 16556939,
+      "sha256": "6a1e9c3733fdae07eecf48a356f67cb33fab81d0240c2dfcd1b9442217ac08f0"
+    },
+    {
+      "path": "general.ttl",
+      "bytes": 11875,
+      "sha256": "ac0d49279fb90d9508ab727ee7d31531a147b61bc9e20f595769b266d9a1148f"
+    },
+    {
+      "path": "METARinst.ttl",
+      "bytes": 7782824,
+      "sha256": "bb7a2aa8ef3e4107abaf8172c7245f52ce1be8e97d9f13a96e89748ef5dc756e"
+    },
+    {
+      "path": "NAS.ttl",
+      "bytes": 35918,
+      "sha256": "4f0848ceb14c3b987a779b8d1153a1af74a93577569881864576e4db3b89390f"
+    },
+    {
+      "path": "NASinst.ttl",
+      "bytes": 4722,
+      "sha256": "35048f861d4c5c6edd512927ef6d1cc722919df8e3d8124fff0c428dbb617652"
+    },
+    {
+      "path": "routeInst.ttl",
+      "bytes": 8235311,
+      "sha256": "af1cd7c3aacdf63c7b52233abfcb9bb2f51b00da372c97861126a9219c718117"
+    },
+    {
+      "path": "SectorLocationInst.ttl",
+      "bytes": 17897972,
+      "sha256": "1ef34b2fad55f55553628be177975ee08a0921420fca3ad5df1ded2f131dc153"
+    },
+    {
+      "path": "sidStarInst.ttl",
+      "bytes": 8260157,
+      "sha256": "d3128f8941d464c4461b8f49571f28220fd714b9c273619bcfb59ea280486522"
+    },
+    {
+      "path": "TAFinst.ttl",
+      "bytes": 13464470,
+      "sha256": "1a2aaa12c83615d29dc970ca2852d89f59ceb3c25600ff163812b0446d9bb0bd"
+    },
+    {
+      "path": "TMIinst.ttl",
+      "bytes": 24151351,
+      "sha256": "ccc86a452d28ee4c367eee60537758940df2e9926885b69dea6a825aa55f051b"
+    },
+    {
+      "path": "TRACONinst.ttl",
+      "bytes": 70525,
+      "sha256": "4fd756cb6f628cec7328edc41fc65eb60b29fcd8669d8304bb3484dba3bb941f"
+    }
+  ],
+  "extraction": {
+    "target_type_count": 8,
+    "cap_per_type": 8000,
+    "legacy_implementation": "entity_extractor_enriched.py"
+  }
+}

@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the associated paper and software release."
+title: "Ontology Retrieval"
+type: software
+version: 0.1.0
+date-released: 2026-08-11
+repository-code: "https://github.com/NINCOMPAQ/OCVR"
+authors:
+  - name: "TODO: add project authors before release"

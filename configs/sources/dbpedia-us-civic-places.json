@@ -1,0 +1,34 @@
+{
+  "id": "dbpedia-us-civic-places-paper-v1-source",
+  "status": "mutable-upstream-boundary-not-yet-frozen",
+  "sparql_endpoint": "https://dbpedia.org/sparql",
+  "upstream_urls": {
+    "resources": "https://www.dbpedia.org/resources/",
+    "latest_core": "https://www.dbpedia.org/resources/latest-core/",
+    "databus_collection": "https://databus.dbpedia.org/dbpedia/collections/latest-core"
+  },
+  "retrieval_date": "2026-04-30",
+  "legacy_implementation": "entity_extractor_dbpedia_us_civic_places_enriched.py",
+  "target_classes": [
+    "EducationalInstitution",
+    "University",
+    "School",
+    "City",
+    "Town",
+    "Village",
+    "ArchitecturalStructure",
+    "Building",
+    "ReligiousBuilding",
+    "Infrastructure",
+    "Dam",
+    "Venue",
+    "Stadium",
+    "Library",
+    "Hospital"
+  ],
+  "batch_limit": 500,
+  "enrich_batch_size": 40,
+  "max_per_class": 0,
+  "max_total_entities": 0,
+  "release_blocker": "A live endpoint is mutable. Publish the exact entity-card artifact and preserve a pinned DBpedia dump or exact pre-enrichment boundary export."
+}

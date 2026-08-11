@@ -1,0 +1,248 @@
+{
+  "id": "brick-mortardata-paper-v1-source-files",
+  "status": "recovered-local-source-manifest",
+  "upstream_urls": {
+    "resources": "https://brickschema.org/resources/",
+    "schema_1_4_4": "https://brickschema.org/schema/1.4.4/Brick.ttl",
+    "mortar_models_base": "https://brickschema.org/ttl/mortar/",
+    "mortar_graphs_repository": "https://huggingface.co/datasets/gtfierro/mortargraphs"
+  },
+  "download_status": "The current Mortar model URLs match sampled local files. The current Brick 1.4.4 URL does not match the paper environment TBox hash, so the exact TBox must be published or reconstructed from a pinned upstream commit.",
+  "files": [
+    {
+      "path": "brick_mortardata_models/bldg1.ttl",
+      "bytes": 29439,
+      "sha256": "7595e8fd5181af6e42ba6a906635b2124c94a0b444e09efa276c2231b393e95e"
+    },
+    {
+      "path": "brick_mortardata_models/bldg10.ttl",
+      "bytes": 23078,
+      "sha256": "88a3a957fe40ad16edbb9f3cbbea14044f3e785723947fa97c669889bbb8f990"
+    },
+    {
+      "path": "brick_mortardata_models/bldg11.ttl",
+      "bytes": 438392,
+      "sha256": "f0cc65b987242aa05c7e8cf9099ccc415147ba4a16bdb6a00db2c2e976771a1d"
+    },
+    {
+      "path": "brick_mortardata_models/bldg12.ttl",
+      "bytes": 148531,
+      "sha256": "f31649426ee2f8fe1a995b302df005b4c39eb06d0d8e99b85026a7216c9d843f"
+    },
+    {
+      "path": "brick_mortardata_models/bldg13.ttl",
+      "bytes": 43958,
+      "sha256": "8310b50f49a990c9ad5fae489ead0b2c8b156686591e6160b169249829e8651d"
+    },
+    {
+      "path": "brick_mortardata_models/bldg14.ttl",
+      "bytes": 3774,
+      "sha256": "d2e4a61336982253bd5174e14f8324f92c760f07b5f559c91126d1af178b2342"
+    },
+    {
+      "path": "brick_mortardata_models/bldg15.ttl",
+      "bytes": 293962,
+      "sha256": "33045dc66348138f530e8679fbeba49d081366a14f2b498805fe242b831a9cad"
+    },
+    {
+      "path": "brick_mortardata_models/bldg16.ttl",
+      "bytes": 5115,
+      "sha256": "9d52ee054544387bef143779bb47293f48e7a355a958a98160c73aff2dbe8b84"
+    },
+    {
+      "path": "brick_mortardata_models/bldg17.ttl",
+      "bytes": 3479,
+      "sha256": "008a08fb1d24332d5171bb4b8250951a8fad7934dfb2924bd1a9103d5026bbc6"
+    },
+    {
+      "path": "brick_mortardata_models/bldg18.ttl",
+      "bytes": 177447,
+      "sha256": "5be9df727c3c16ac54b81a68f9fbf29b79ee5e0def29b84aad5f9afe37527804"
+    },
+    {
+      "path": "brick_mortardata_models/bldg19.ttl",
+      "bytes": 15724,
+      "sha256": "f1ae62c5a1abe59e3a92c5e50ac89bf85f1c4f2bc40aa790ef2374b613936dea"
+    },
+    {
+      "path": "brick_mortardata_models/bldg2.ttl",
+      "bytes": 27012,
+      "sha256": "fa307109d9c69b4dbfd5f9ecbf34fb4562288861d6e93085bd74ef0b9668f0b9"
+    },
+    {
+      "path": "brick_mortardata_models/bldg20.ttl",
+      "bytes": 26359,
+      "sha256": "df733508ff99a3a2ae0e2e4c0379dcc0a8b3b448776ff1e03bca5ada01b739bc"
+    },
+    {
+      "path": "brick_mortardata_models/bldg21.ttl",
+      "bytes": 13205,
+      "sha256": "f4db7cac3ce08f4072b52728b948b55782ac9639196142a5ab595db0fc2fb2af"
+    },
+    {
+      "path": "brick_mortardata_models/bldg22.ttl",
+      "bytes": 15502,
+      "sha256": "0f3c74b7235cac96a2c781a0956f6796d72ec7073fadc6d5bae6bb68940df87d"
+    },
+    {
+      "path": "brick_mortardata_models/bldg23.ttl",
+      "bytes": 9344,
+      "sha256": "c90e816029e2690adc2431a81a246a54fab466952930f7f84f2e681e845a928a"
+    },
+    {
+      "path": "brick_mortardata_models/bldg24.ttl",
+      "bytes": 1224,
+      "sha256": "8773e567085dbd184f11f25ea10fac3d9ddd5128dd6f8df1490ebc01c4627825"
+    },
+    {
+      "path": "brick_mortardata_models/bldg25.ttl",
+      "bytes": 6263,
+      "sha256": "cedd9ab096310156dd0eda4f09236780e57471d589a54f08522cdaf1cc374669"
+    },
+    {
+      "path": "brick_mortardata_models/bldg26.ttl",
+      "bytes": 11537,
+      "sha256": "045617996f4e28625d43e689954ceeee29f825288b70dfbc794b7d8ec3cbe0da"
+    },
+    {
+      "path": "brick_mortardata_models/bldg27.ttl",
+      "bytes": 34085,
+      "sha256": "1b1016b5e6dbd1ea22640505c0385cab9cc67f3469c1eb238d1d5ef32a4a0432"
+    },
+    {
+      "path": "brick_mortardata_models/bldg28.ttl",
+      "bytes": 34826,
+      "sha256": "d0c745a63b9d65b61abdcacfd3add58135c73850f20991f0e5103f0bc0efcb8d"
+    },
+    {
+      "path": "brick_mortardata_models/bldg29.ttl",
+      "bytes": 4465,
+      "sha256": "65013812331d58d428c6a2fec4d00bf5ef1b1673cfe65695f8c4eeed8da2f1a6"
+    },
+    {
+      "path": "brick_mortardata_models/bldg3.ttl",
+      "bytes": 3707,
+      "sha256": "0a205fd23c0f51c9051ef6829a9fdfc369cfbfc89a331870c5d4eb2b0c1a7eee"
+    },
+    {
+      "path": "brick_mortardata_models/bldg30.ttl",
+      "bytes": 122253,
+      "sha256": "e5534b48bdd869b5e047145ddac8cfe9ee4c7217883a04750afa093f5a1d07fa"
+    },
+    {
+      "path": "brick_mortardata_models/bldg31.ttl",
+      "bytes": 2067,
+      "sha256": "07a5845f9b4753565241e7526cbe0f2cbac0d65eb6deca49322ce071f7f46894"
+    },
+    {
+      "path": "brick_mortardata_models/bldg32.ttl",
+      "bytes": 238489,
+      "sha256": "af52965a529ccc2ae253d9d713ef5fd78908b9baf45398cdffb2de7410390a22"
+    },
+    {
+      "path": "brick_mortardata_models/bldg33.ttl",
+      "bytes": 1612,
+      "sha256": "1378479becc008694d5fc00f7cf76bf8a0c32ab7692ace3ff7d1cc3822e10b81"
+    },
+    {
+      "path": "brick_mortardata_models/bldg34.ttl",
+      "bytes": 77958,
+      "sha256": "3b355ee921652161f06d644e9f47c97f377adabac44de1e0dc0e5c9db15d3e19"
+    },
+    {
+      "path": "brick_mortardata_models/bldg35.ttl",
+      "bytes": 22308,
+      "sha256": "d5bbda67c72d30991d70b1ba5044a35da771a3a846689c79e02572baa4f31b91"
+    },
+    {
+      "path": "brick_mortardata_models/bldg36.ttl",
+      "bytes": 38722,
+      "sha256": "257c5345f70504f0714e788c04475fada2c22dece399e37db1804c57d34ffd79"
+    },
+    {
+      "path": "brick_mortardata_models/bldg37.ttl",
+      "bytes": 762271,
+      "sha256": "7d7e444c4ab6154e1eb03acde8483bb4dc77e676abb4712fdbb9328a38792cca"
+    },
+    {
+      "path": "brick_mortardata_models/bldg38.ttl",
+      "bytes": 3389,
+      "sha256": "2a42a47ae44ff1fb1806d7d49e718a332e5be7ac01318892d1257798a9415648"
+    },
+    {
+      "path": "brick_mortardata_models/bldg39.ttl",
+      "bytes": 24448,
+      "sha256": "667668273f41f2c53e5020af20cc1badea1f47666ea31d8efd67ebed6fdee6a3"
+    },
+    {
+      "path": "brick_mortardata_models/bldg4.ttl",
+      "bytes": 49099,
+      "sha256": "e1b13d0b5663da61df1917ec045a7da4e52e86bf0a17a661e1916dcf79d3bc9c"
+    },
+    {
+      "path": "brick_mortardata_models/bldg40.ttl",
+      "bytes": 112124,
+      "sha256": "1946e8b8d09a907dbab2301216852deff96b81fab859202d8e7d27c2ef5c7b01"
+    },
+    {
+      "path": "brick_mortardata_models/bldg41.ttl",
+      "bytes": 7625,
+      "sha256": "e539f14e8faf688cd71de31a12d5fefac7ccb273f5ab624306840e1a82c0948e"
+    },
+    {
+      "path": "brick_mortardata_models/bldg42.ttl",
+      "bytes": 35229,
+      "sha256": "dc9ca2da4a40913af46809dd4bcb9208167468df2c8ab81459fb25980eade45d"
+    },
+    {
+      "path": "brick_mortardata_models/bldg43.ttl",
+      "bytes": 70064,
+      "sha256": "a49f615b3ba5a6a720905489acb09d011aea0719a67bfab8a058c18093b840a6"
+    },
+    {
+      "path": "brick_mortardata_models/bldg44.ttl",
+      "bytes": 51188,
+      "sha256": "66f9d5a0206f8dbbc0bf6593c5fa3aec7958e70b46112597248d8fae872a8508"
+    },
+    {
+      "path": "brick_mortardata_models/bldg5.ttl",
+      "bytes": 180235,
+      "sha256": "b6794852aa22c9e29ee7ed6b70fbddeae4666c0b0f1b8ccfc2aa3f62997dc045"
+    },
+    {
+      "path": "brick_mortardata_models/bldg6.ttl",
+      "bytes": 214941,
+      "sha256": "a44cf44f38b0765b1fa6c95c8f914434bd60a7afe045ad044a4eb6fcee3d9a25"
+    },
+    {
+      "path": "brick_mortardata_models/bldg7.ttl",
+      "bytes": 22771,
+      "sha256": "26a86c1c005ae350c4a238eee4f9a958f4259961fabf64247a735503ea3b13be"
+    },
+    {
+      "path": "brick_mortardata_models/bldg8.ttl",
+      "bytes": 53383,
+      "sha256": "8f91d10e95b9e22fb9f73742a8150f9dc5e12a500663cf18a6336f5aefc80b39"
+    },
+    {
+      "path": "brick_mortardata_models/bldg9.ttl",
+      "bytes": 178657,
+      "sha256": "70938782838e7da5a566aa2313b8821989003886c3b30cd0973a3f95ea52427f"
+    },
+    {
+      "path": "brick_mortardata_models/smc.ttl",
+      "bytes": 122247,
+      "sha256": "c4dd5ade07af323e81a7f0c01f67fab2f4a0d9a0b242730c81c83905450a6552"
+    },
+    {
+      "path": "brick_tbox.ttl",
+      "bytes": 1798458,
+      "sha256": "26a28fd3b52449dac59c44fc4b672d4b716fbd005c35b04f27fb35f2fa51ebc5"
+    }
+  ],
+  "extraction": {
+    "tbox": "brick_tbox.ttl",
+    "abox_directory": "brick_mortardata_models",
+    "legacy_implementation": "entity_extractor_brick_enriched.py"
+  }
+}

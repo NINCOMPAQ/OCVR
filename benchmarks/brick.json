@@ -1,0 +1,410 @@
+[
+  {
+    "name": "AHU01 in bldg1",
+    "query": "air handler unit AHU01 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Air_Handler_Unit"
+    ],
+    "id": "q001"
+  },
+  {
+    "name": "AHU04N in bldg5",
+    "query": "air handler unit AHU04N in bldg5",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Air_Handler_Unit"
+    ],
+    "id": "q002"
+  },
+  {
+    "name": "AHU03 in bldg11",
+    "query": "air handler unit AHU03 in bldg11",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Air_Handler_Unit"
+    ],
+    "id": "q003"
+  },
+  {
+    "name": "Chiller serving AHUs",
+    "query": "chiller serving ahus",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Chiller"
+    ],
+    "id": "q004"
+  },
+  {
+    "name": "Reheat coil in smc",
+    "query": "reheat coil in smc",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Reheat_Coil"
+    ],
+    "id": "q005"
+  },
+  {
+    "name": "Discharge temp sensor in smc",
+    "query": "discharge air temperature sensor in smc",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Discharge_Air_Temperature_Sensor"
+    ],
+    "id": "q006"
+  },
+  {
+    "name": "Reheat coil on VAV in smc",
+    "query": "reheat coil on vav in smc",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Reheat_Coil"
+    ],
+    "id": "q007"
+  },
+  {
+    "name": "Air moving component on VAVRM107A in bldg1",
+    "query": "air moving component on VAVRM107A in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Damper"
+    ],
+    "id": "q008"
+  },
+  {
+    "name": "Device serving RM107A in bldg1",
+    "query": "device serving RM107A in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#VAV",
+      "https://brickschema.org/schema/Brick#RVAV"
+    ],
+    "id": "q009"
+  },
+  {
+    "name": "Device serving RM2435 in bldg5",
+    "query": "device serving RM2435 in bldg5",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#VAV",
+      "https://brickschema.org/schema/Brick#RVAV"
+    ],
+    "id": "q010"
+  },
+  {
+    "name": "Supply air temperature reading AHU01 bldg1",
+    "query": "temperature reading for supply air on AHU01 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Supply_Air_Temperature_Sensor"
+    ],
+    "id": "q011"
+  },
+  {
+    "name": "Outside condition reading AHU01 bldg1",
+    "query": "outside condition reading on AHU01 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Outside_Air_Temperature_Sensor"
+    ],
+    "id": "q012"
+  },
+  {
+    "name": "Return air condition reading AHU01 bldg1",
+    "query": "return air condition reading on AHU01 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Return_Air_Temperature_Sensor"
+    ],
+    "id": "q013"
+  },
+  {
+    "name": "Mixed air condition reading AHU01 bldg1",
+    "query": "mixed air condition reading on AHU01 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Mixed_Air_Temperature_Sensor"
+    ],
+    "id": "q014"
+  },
+  {
+    "name": "Supply air pressure on AHU02 bldg1",
+    "query": "supply air static pressure sensor on AHU02 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Supply_Air_Static_Pressure_Sensor"
+    ],
+    "id": "q015"
+  },
+  {
+    "name": "Temperature reading for RM107A bldg1",
+    "query": "temperature reading for RM107A in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Zone_Air_Temperature_Sensor"
+    ],
+    "id": "q016"
+  },
+  {
+    "name": "Zone air temp RM107B bldg1",
+    "query": "zone air temperature sensor for RM107B in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Zone_Air_Temperature_Sensor"
+    ],
+    "id": "q017"
+  },
+  {
+    "name": "Temperature reading for RM2435 bldg5",
+    "query": "temperature reading for RM2435 in bldg5",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Zone_Air_Temperature_Sensor"
+    ],
+    "id": "q018"
+  },
+  {
+    "name": "Temperature reading for RM2212A bldg11",
+    "query": "temperature reading for RM2212A in bldg11",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Zone_Air_Temperature_Sensor"
+    ],
+    "id": "q019"
+  },
+  {
+    "name": "Actual airflow for 1-1-7 smc",
+    "query": "actual airflow for 1-1-7 in smc",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Supply_Air_Flow_Sensor"
+    ],
+    "id": "q020"
+  },
+  {
+    "name": "Discharge temperature reading 1-1-7 smc",
+    "query": "discharge temperature reading for 1-1-7 in smc",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Discharge_Air_Temperature_Sensor"
+    ],
+    "id": "q021"
+  },
+  {
+    "name": "Chilled water supply temp bldg1",
+    "query": "building chilled water supply temperature sensor in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Chilled_Water_Supply_Temperature_Sensor"
+    ],
+    "id": "q022"
+  },
+  {
+    "name": "Chilled water return temp bldg1",
+    "query": "building chilled water return temperature sensor in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Chilled_Water_Return_Temperature_Sensor"
+    ],
+    "id": "q023"
+  },
+  {
+    "name": "Occupancy sensor in corpus",
+    "query": "occupancy sensor in building hvac model",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Occupancy_Sensor"
+    ],
+    "id": "q024"
+  },
+  {
+    "name": "Supply air temperature target AHU01 bldg1",
+    "query": "temperature target for supply air on AHU01 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Supply_Air_Temperature_Setpoint"
+    ],
+    "id": "q025"
+  },
+  {
+    "name": "Supply air temp setpoint AHU04N bldg5",
+    "query": "supply air temperature setpoint on AHU04N in bldg5",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Supply_Air_Temperature_Setpoint"
+    ],
+    "id": "q026"
+  },
+  {
+    "name": "Temperature target for RM107A bldg1",
+    "query": "temperature target for RM107A in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Zone_Air_Temperature_Setpoint"
+    ],
+    "id": "q027"
+  },
+  {
+    "name": "Zone air temp setpoint RM2435 bldg5",
+    "query": "zone air temperature setpoint for RM2435 in bldg5",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Zone_Air_Temperature_Setpoint"
+    ],
+    "id": "q028"
+  },
+  {
+    "name": "Occupied cooling setpoint bldg37",
+    "query": "occupied cooling temperature setpoint in bldg37 lab zone",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Occupied_Cooling_Temperature_Setpoint"
+    ],
+    "id": "q029"
+  },
+  {
+    "name": "Occupied heating setpoint bldg37",
+    "query": "occupied heating temperature setpoint in bldg37 lab zone",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Occupied_Heating_Temperature_Setpoint"
+    ],
+    "id": "q030"
+  },
+  {
+    "name": "Unoccupied cooling setpoint bldg37",
+    "query": "unoccupied cooling temperature setpoint in bldg37 lab zone",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Unoccupied_Air_Temperature_Cooling_Setpoint"
+    ],
+    "id": "q031"
+  },
+  {
+    "name": "Unoccupied heating setpoint bldg37",
+    "query": "unoccupied heating temperature setpoint in bldg37 lab zone",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Unoccupied_Air_Temperature_Heating_Setpoint"
+    ],
+    "id": "q032"
+  },
+  {
+    "name": "Air flow setpoint 1-1-7 smc",
+    "query": "air flow setpoint 1-1-7 in smc",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Air_Flow_Setpoint",
+      "https://brickschema.org/schema/Brick#Supply_Air_Flow_Setpoint"
+    ],
+    "id": "q033"
+  },
+  {
+    "name": "Heating command 1-1-7 smc",
+    "query": "heating command 1-1-7 in smc",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Heating_Command"
+    ],
+    "id": "q034"
+  },
+  {
+    "name": "Cooling control point AHU01 bldg1",
+    "query": "point that controls cooling on AHU01 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Cooling_Command",
+      "https://brickschema.org/schema/Brick#Valve_Command"
+    ],
+    "id": "q035"
+  },
+  {
+    "name": "Chilled water pump control in bldg1",
+    "query": "control point for the chilled water pump in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Start_Stop_Command"
+    ],
+    "id": "q036"
+  },
+  {
+    "name": "Floor1 in bldg1",
+    "query": "floor1 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Floor"
+    ],
+    "id": "q037"
+  },
+  {
+    "name": "Rooms on floor1 in bldg1",
+    "query": "room on floor1 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Room"
+    ],
+    "id": "q038"
+  },
+  {
+    "name": "HVAC zone RM107A in bldg1",
+    "query": "hvac zone RM107A in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#HVAC_Zone"
+    ],
+    "id": "q039"
+  },
+  {
+    "name": "HVAC zone RM2435 in bldg5",
+    "query": "hvac zone RM2435 in bldg5",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#HVAC_Zone"
+    ],
+    "id": "q040"
+  },
+  {
+    "name": "HVAC zone RM2212A in bldg11",
+    "query": "hvac zone RM2212A in bldg11",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#HVAC_Zone"
+    ],
+    "id": "q041"
+  },
+  {
+    "name": "Room RM2212A in bldg11",
+    "query": "room RM2212A in bldg11",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Room"
+    ],
+    "id": "q042"
+  },
+  {
+    "name": "Supply-side temperature on AHU01 ambiguous",
+    "query": "supply side temperature point on AHU01 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Supply_Air_Temperature_Sensor"
+    ],
+    "id": "q043"
+  },
+  {
+    "name": "Supply-side temperature target AHU01 ambiguous",
+    "query": "supply side temperature target on AHU01 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Supply_Air_Temperature_Setpoint"
+    ],
+    "id": "q044"
+  },
+  {
+    "name": "Actual flow on 1-1-7 ambiguous",
+    "query": "actual flow for 1-1-7 in smc",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Supply_Air_Flow_Sensor"
+    ],
+    "id": "q045"
+  },
+  {
+    "name": "Target flow on 1-1-7 ambiguous",
+    "query": "target flow for 1-1-7 in smc",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Air_Flow_Setpoint",
+      "https://brickschema.org/schema/Brick#Supply_Air_Flow_Setpoint"
+    ],
+    "id": "q046"
+  },
+  {
+    "name": "Damper control point RM107A ambiguous",
+    "query": "damper control point for RM107A in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Damper_Position_Setpoint",
+      "https://brickschema.org/schema/Brick#Damper_Position_Command"
+    ],
+    "id": "q047"
+  },
+  {
+    "name": "Valve-related control on AHU01 ambiguous",
+    "query": "valve related control point on AHU01 in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Valve_Command",
+      "https://brickschema.org/schema/Brick#Cooling_Command"
+    ],
+    "id": "q048"
+  },
+  {
+    "name": "Room mode-related point RM107A ambiguous",
+    "query": "mode related point for RM107A in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Heating_Command",
+      "https://brickschema.org/schema/Brick#Mode"
+    ],
+    "id": "q049"
+  },
+  {
+    "name": "Zone temp control RM107A ambiguous",
+    "query": "zone air control temperature for RM107A in bldg1",
+    "constraint_any": [
+      "https://brickschema.org/schema/Brick#Zone_Air_Temperature_Setpoint"
+    ],
+    "id": "q050"
+  }
+]
