@@ -9,10 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The exact pre-embedding datasets are tracked by Git LFS. The
+          # release verifier checks their real byte sizes and SHA-256 hashes.
+          lfs: true
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - run: python -m pip install pytest==8.4.1
+      - run: git lfs fsck
       - run: python -m compileall -q src tests
       - run: PYTHONPATH=src python -m pytest -q
       - run: PYTHONPATH=src python scripts/verify_release.py --allow-unpublished-data
