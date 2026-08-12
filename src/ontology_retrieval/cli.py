@@ -29,6 +29,7 @@ def main(argv: list[str] | None = None) -> int:
     index = sub.add_parser("index")
     index.add_argument("experiment", type=Path)
     index.add_argument("--replace", action="store_true")
+    index.add_argument("--resume", action="store_true")
 
     verify_index = sub.add_parser("verify-index")
     verify_index.add_argument("experiment", type=Path)
@@ -50,6 +51,10 @@ def main(argv: list[str] | None = None) -> int:
     compare.add_argument("actual", type=Path)
     compare.add_argument("expected", type=Path)
 
+    average = sub.add_parser("average")
+    average.add_argument("runs", type=Path, nargs="+")
+    average.add_argument("--output", type=Path, required=True)
+
     args = parser.parse_args(argv)
     if args.command == "data":
         config = load_dataset(args.config.resolve())
@@ -60,7 +65,15 @@ def main(argv: list[str] | None = None) -> int:
         from .index import build_collection
 
         experiment = load_experiment(args.experiment.resolve())
-        print(build_collection(experiment, _data_path(experiment.dataset, args.data_dir), args.qdrant_url, args.replace))
+        print(
+            build_collection(
+                experiment,
+                _data_path(experiment.dataset, args.data_dir),
+                args.qdrant_url,
+                args.replace,
+                args.resume,
+            )
+        )
     elif args.command == "verify-index":
         from .index import verify_collection
 
@@ -93,6 +106,10 @@ def main(argv: list[str] | None = None) -> int:
             print("\n".join(differences))
             return 1
         print("All deterministic paper-v1 values match the baseline.")
+    elif args.command == "average":
+        from .average import average_runs, write_average_csv
+
+        write_average_csv(average_runs(args.runs), args.output)
     return 0
 
 

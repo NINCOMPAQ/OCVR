@@ -170,6 +170,21 @@ ontology-retrieval evaluate configs/experiments/dbpedia-bge-v2.json --output res
 
 See [results/benchmark-v2/README.md](results/benchmark-v2/README.md) for the recorded 50-query results and [docs/experiments.md](docs/experiments.md) for the query-design rationale.
 
+Generate the paper's average-by-embedding CSV from the six structured runs (using the two `-v2` DBpedia files for the revised 50-query version):
+
+```powershell
+ontology-retrieval average `
+    results/runs/atmonto-minilm.json `
+    results/runs/atmonto-bge.json `
+    results/runs/brick-minilm.json `
+    results/runs/brick-bge.json `
+    results/runs/dbpedia-minilm-v2.json `
+    results/runs/dbpedia-bge-v2.json `
+    --output results/runs/average-by-embedding-v2.csv
+```
+
+The command rejects missing or duplicate dataset/model pairs and averages each metric equally across the three datasets, matching the paper table's macro-average convention.
+
 See [docs/experiments.md](docs/experiments.md) for exact metric definitions and interpretation cautions.
 
 ## 5. Regenerate the paper table

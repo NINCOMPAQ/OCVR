@@ -30,3 +30,11 @@ ontology-retrieval evaluate configs/experiments/dbpedia-bge-v2.json --output res
 ```
 
 The raw run files are generated artifacts and are intentionally ignored by Git. Each contains all 350 per-query/strategy rows plus the aggregate summary.
+
+## Average across all three ontologies
+
+`average-by-embedding-v2.csv` is the revised form of the paper's average-by-embedding table. It was generated from fresh local ATMONTO and Brick runs (50 queries each) and the DBpedia-v2 runs (50 queries) using the command documented in the repository README. Every row is the unweighted mean of the three ontology summaries.
+
+All six Qdrant collections were verified green before evaluation. Point counts were 36,655 for ATMONTO, 19,388 for Brick, and 23,189 for DBpedia under both embedding models; dimensions were 384 for MiniLM and 1,024 for BGE, with cosine distance throughout. Model revisions are pinned in `configs/models/`.
+
+The CSV's valid@5, success@5, and score values are the revised experimental results. Its times were measured locally on 2026-08-12 and should not be treated as hardware-independent performance claims.

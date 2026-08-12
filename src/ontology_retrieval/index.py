@@ -16,6 +16,7 @@ def build_collection(
     dataset_path: Path,
     qdrant_url: str,
     replace: bool = False,
+    resume: bool = False,
 ) -> int:
     from qdrant_client import QdrantClient, models
     from sentence_transformers import SentenceTransformer
@@ -23,24 +24,42 @@ def build_collection(
     verify_dataset(dataset_path, experiment.dataset)
     client = QdrantClient(url=qdrant_url)
     exists = client.collection_exists(experiment.collection)
-    if exists and not replace:
+    if replace and resume:
+        raise ValueError("--replace and --resume cannot be used together")
+    if exists and not replace and not resume:
         raise RuntimeError(
-            f"Collection {experiment.collection!r} already exists; pass --replace explicitly."
+            f"Collection {experiment.collection!r} already exists; pass --replace or --resume."
         )
-    if exists:
+    if exists and replace:
         client.delete_collection(experiment.collection)
     distance = getattr(models.Distance, experiment.model.distance.upper())
-    client.create_collection(
-        collection_name=experiment.collection,
-        vectors_config=models.VectorParams(size=experiment.model.dimension, distance=distance),
-    )
-    for field in experiment.dataset.relevance_fields:
-        client.create_payload_index(
+    existing_ids = set()
+    if exists and resume:
+        verify_collection_shape(experiment, client)
+        offset = None
+        while True:
+            points, offset = client.scroll(
+                collection_name=experiment.collection,
+                limit=1000,
+                offset=offset,
+                with_payload=False,
+                with_vectors=False,
+            )
+            existing_ids.update(str(point.id) for point in points)
+            if offset is None:
+                break
+    else:
+        client.create_collection(
             collection_name=experiment.collection,
-            field_name=field,
-            field_schema=models.PayloadSchemaType.KEYWORD,
-            wait=True,
+            vectors_config=models.VectorParams(size=experiment.model.dimension, distance=distance),
         )
+        for field in experiment.dataset.relevance_fields:
+            client.create_payload_index(
+                collection_name=experiment.collection,
+                field_name=field,
+                field_schema=models.PayloadSchemaType.KEYWORD,
+                wait=True,
+            )
     model = SentenceTransformer(
         experiment.model.huggingface_id,
         revision=experiment.model.revision,
@@ -80,11 +99,27 @@ def build_collection(
         batch.clear()
 
     for record in iter_entity_cards(dataset_path):
+        if stable_point_id(experiment.dataset.id, record["iri"]) in existing_ids:
+            continue
         batch.append(record)
         if len(batch) >= experiment.model.batch_size:
             flush()
     flush()
-    return total
+    return len(existing_ids) + total
+
+
+def verify_collection_shape(experiment: ExperimentConfig, client) -> None:
+    info = client.get_collection(experiment.collection)
+    vector_config = info.config.params.vectors
+    errors = []
+    if vector_config.size != experiment.model.dimension:
+        errors.append(f"dimension expected {experiment.model.dimension}, found {vector_config.size}")
+    if str(vector_config.distance).lower().split(".")[-1] != experiment.model.distance.lower():
+        errors.append(f"distance expected {experiment.model.distance}, found {vector_config.distance}")
+    if info.points_count > experiment.dataset.records:
+        errors.append(f"points exceed expected {experiment.dataset.records}: {info.points_count}")
+    if errors:
+        raise ValueError("Cannot resume incompatible collection: " + "; ".join(errors))
 
 
 def verify_collection(experiment: ExperimentConfig, qdrant_url: str) -> dict:

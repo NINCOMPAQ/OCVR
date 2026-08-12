@@ -74,6 +74,12 @@ def main(argv: list[str] | None = None) -> int:
     if len(master.get("rows", [])) != 42:
         errors.append("Historical master results must contain 42 rows")
 
+    average_csv = ROOT / "results" / "benchmark-v2" / "average-by-embedding-v2.csv"
+    if not average_csv.exists():
+        errors.append("Missing DBpedia-v2 average-by-embedding CSV")
+    elif len(average_csv.read_text(encoding="utf-8").splitlines()) != 15:
+        errors.append("Expected header plus 14 rows in average-by-embedding-v2.csv")
+
     required = ["README.md", "CITATION.cff", "compose.yaml", "pyproject.toml"]
     for name in required:
         if not (ROOT / name).is_file():
