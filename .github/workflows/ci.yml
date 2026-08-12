@@ -8,12 +8,12 @@ jobs:
   unit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           # The exact pre-embedding datasets are tracked by Git LFS. The
           # release verifier checks their real byte sizes and SHA-256 hashes.
           lfs: true
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - run: python -m pip install pytest==8.4.1

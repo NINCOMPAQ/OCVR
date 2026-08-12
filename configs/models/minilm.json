@@ -1,0 +1,10 @@
+{
+  "id": "all-MiniLM-L6-v2",
+  "huggingface_id": "sentence-transformers/all-MiniLM-L6-v2",
+  "revision": "c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+  "source_url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/tree/c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+  "dimension": 384,
+  "normalize_embeddings": true,
+  "distance": "cosine",
+  "batch_size": 128
+}

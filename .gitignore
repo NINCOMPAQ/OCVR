@@ -7,7 +7,7 @@ __pycache__/
 .ruff_cache/
 .coverage
 htmlcov/
-models/
+/models/
 qdrant_storage/
 results/runs/
 *.log

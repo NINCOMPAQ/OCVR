@@ -7,6 +7,8 @@ ROOT = Path(__file__).parents[1]
 
 
 def test_all_six_experiments_load():
+    model_paths = sorted((ROOT / "configs" / "models").glob("*.json"))
+    assert [path.name for path in model_paths] == ["bge-large.json", "minilm.json"]
     paths = sorted((ROOT / "configs" / "experiments").glob("*.json"))
     experiments = [load_experiment(path) for path in paths]
     assert len(experiments) == 6
@@ -26,4 +28,3 @@ def test_benchmark_counts_match_paper_protocol():
         queries = json.loads(experiment.dataset.benchmark.read_text(encoding="utf-8"))
         assert len(queries) == expected[experiment.dataset.id]
         assert all({"id", "name", "query", "constraint_any"} <= row.keys() for row in queries)
-
