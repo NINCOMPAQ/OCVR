@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -80,6 +80,8 @@ def load_model(path: Path) -> ModelConfig:
 def load_experiment(path: Path) -> ExperimentConfig:
     raw = read_json(path)
     dataset = load_dataset((path.parent / raw["dataset_config"]).resolve())
+    if raw.get("benchmark"):
+        dataset = replace(dataset, benchmark=(path.parent / raw["benchmark"]).resolve())
     model = load_model((path.parent / raw["model_config"]).resolve())
     return ExperimentConfig(
         id=raw["id"],
@@ -91,4 +93,3 @@ def load_experiment(path: Path) -> ExperimentConfig:
         initial_fetch=raw.get("initial_fetch", 25),
         fetch_step=raw.get("fetch_step", 25),
     )
-

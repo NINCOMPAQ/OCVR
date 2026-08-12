@@ -54,14 +54,14 @@ def main(argv: list[str] | None = None) -> int:
         errors.append(f"Expected 2 model configs, found {len(models)}")
 
     experiments = list((ROOT / "configs" / "experiments").glob("*.json"))
-    if len(experiments) != 6:
-        errors.append(f"Expected 6 experiment configs, found {len(experiments)}")
+    if len(experiments) != 8:
+        errors.append(f"Expected 8 experiment configs (six paper-v1 plus two DBpedia v2), found {len(experiments)}")
 
     sources = list((ROOT / "configs" / "sources").glob("*.json"))
     if len(sources) != 3:
         errors.append(f"Expected 3 source manifests, found {len(sources)}")
 
-    expected_queries = {"atmonto.json": 50, "brick.json": 50, "dbpedia-us-civic-places-natural.json": 42}
+    expected_queries = {"atmonto.json": 50, "brick.json": 50, "dbpedia-us-civic-places-natural.json": 42, "dbpedia-us-civic-places-v2.json": 50}
     for name, expected in expected_queries.items():
         rows = json.loads((ROOT / "benchmarks" / name).read_text(encoding="utf-8"))
         if len(rows) != expected:

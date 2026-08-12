@@ -29,6 +29,10 @@ This preserves the paper measure while making repeated retrieval work visible.
 
 Pre-hoc type-validity is expected to be perfect when at least five matching entities exist because the retrieval filter and validity test use the same type metadata. It measures constraint satisfaction, not independent semantic relevance.
 
-## Planned benchmark v2
+## DBpedia benchmark v2
 
-The paper-v1 suites contain 50 ATMONTO queries, 50 Brick queries, and 42 DBpedia queries. The 42-query DBpedia suite must remain unchanged because its denominator is encoded in the published results. A future benchmark-v2 release should add eight reviewed DBpedia queries, bringing that suite to 50 for cross-dataset consistency. The additional queries must receive new stable IDs and be reported as a separate protocol; they must not be inserted silently into paper-v1.
+The paper-v1 suites contain 50 ATMONTO queries, 50 Brick queries, and 42 DBpedia queries. The 42-query DBpedia suite remains unchanged because its denominator is encoded in the published results.
+
+`benchmarks/dbpedia-us-civic-places-v2.json` extends DBpedia to 50 queries under a separate protocol. Queries `q043` through `q050` cover types that were underrepresented in the original tail: Dam, Library, Hospital, EducationalInstitution, Venue, Building, and ArchitecturalStructure. They are phrased as plausible situational searches rather than class definitions. Some deliberately admit neighboring interpretations—for example, an evening-class query can evoke a school, college, or other educational institution—while retaining a defensible ontology constraint.
+
+Run the extension with `configs/experiments/dbpedia-minilm-v2.json` and `configs/experiments/dbpedia-bge-v2.json`. Results from a successful local run against the reconstructed collections are recorded in `results/benchmark-v2/README.md`.

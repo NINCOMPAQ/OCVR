@@ -161,6 +161,15 @@ ontology-retrieval evaluate configs/experiments/dbpedia-bge.json --output result
 
 Each file contains per-query results and aggregate summaries. In addition to the paper columns, it records mean similarity, Qdrant request count, and total candidates transferred.
 
+The published DBpedia benchmark has 42 queries. A separate reviewed extension brings it to 50 without changing the paper protocol:
+
+```powershell
+ontology-retrieval evaluate configs/experiments/dbpedia-minilm-v2.json --output results/runs/dbpedia-minilm-v2.json
+ontology-retrieval evaluate configs/experiments/dbpedia-bge-v2.json --output results/runs/dbpedia-bge-v2.json
+```
+
+See [results/benchmark-v2/README.md](results/benchmark-v2/README.md) for the recorded 50-query results and [docs/experiments.md](docs/experiments.md) for the query-design rationale.
+
 See [docs/experiments.md](docs/experiments.md) for exact metric definitions and interpretation cautions.
 
 ## 5. Regenerate the paper table

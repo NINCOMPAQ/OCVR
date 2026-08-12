@@ -6,12 +6,12 @@ from ontology_retrieval.config import load_experiment
 ROOT = Path(__file__).parents[1]
 
 
-def test_all_six_experiments_load():
+def test_all_experiments_load():
     model_paths = sorted((ROOT / "configs" / "models").glob("*.json"))
     assert [path.name for path in model_paths] == ["bge-large.json", "minilm.json"]
     paths = sorted((ROOT / "configs" / "experiments").glob("*.json"))
     experiments = [load_experiment(path) for path in paths]
-    assert len(experiments) == 6
+    assert len(experiments) == 8
     assert {item.dataset.id for item in experiments} == {
         "atmonto-enriched-v1",
         "brick-mortardata-enriched-v1",
@@ -26,5 +26,6 @@ def test_benchmark_counts_match_paper_protocol():
         experiment = load_experiment(path)
         import json
         queries = json.loads(experiment.dataset.benchmark.read_text(encoding="utf-8"))
-        assert len(queries) == expected[experiment.dataset.id]
+        expected_count = 50 if path.stem.endswith("-v2") else expected[experiment.dataset.id]
+        assert len(queries) == expected_count
         assert all({"id", "name", "query", "constraint_any"} <= row.keys() for row in queries)
