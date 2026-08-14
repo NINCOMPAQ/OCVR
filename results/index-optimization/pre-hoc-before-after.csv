@@ -1,0 +1,7 @@
+dataset,model,before_ms,after_ms,speedup,valid_at_5_before,valid_at_5_after,success_at_5_before,success_at_5_after,score_before,score_after
+ATMONTO,all-MiniLM-L6-v2,12.403,9.025,1.374,1.0000,1.0000,1.0000,1.0000,0.466310,0.458124
+ATMONTO,bge-large-en-v1.5,16.797,12.377,1.357,1.0000,1.0000,1.0000,1.0000,0.652698,0.652570
+Brick,all-MiniLM-L6-v2,11.638,10.116,1.150,1.0000,1.0000,1.0000,1.0000,0.611083,0.611083
+Brick,bge-large-en-v1.5,14.875,10.825,1.374,1.0000,1.0000,1.0000,1.0000,0.742018,0.741973
+DBpedia US Civic Geography,all-MiniLM-L6-v2,18.761,10.212,1.837,1.0000,1.0000,1.0000,1.0000,0.443642,0.443323
+DBpedia US Civic Geography,bge-large-en-v1.5,22.080,11.557,1.911,1.0000,1.0000,1.0000,1.0000,0.603014,0.602592

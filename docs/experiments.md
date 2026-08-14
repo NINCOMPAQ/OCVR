@@ -40,3 +40,7 @@ Run the extension with `configs/experiments/dbpedia-minilm-v2.json` and `configs
 The revised average-by-embedding table uses the unchanged 50-query ATMONTO and Brick runs plus the 50-query DBpedia-v2 runs. `ontology-retrieval average` computes an unweighted arithmetic mean across those three dataset summaries for every model, strategy, and retrieval cap. Thus each ontology contributes one third of a row regardless of its query count.
 
 If indexing is interrupted after Qdrant has accepted some batches, rerun the same index command with `--resume`. The indexer checks collection dimension, distance, and maximum point count, discovers stable IDs already present, and embeds only missing entity cards. `--resume` and `--replace` are mutually exclusive.
+
+## Filtered-index optimization study
+
+A separate exploratory study forced full HNSW coverage and filter-aware payload indexing across all six collections. It improved pre-hoc latency but changed approximate rankings and did not consistently improve post-hoc search. The paper configuration remains unchanged. See `results/index-optimization/README.md` for configuration, results, accuracy checks, and restoration details.
