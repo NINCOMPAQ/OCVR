@@ -38,3 +38,22 @@ After collecting results, all six collection snapshots were recovered and the or
 - original payload schemas, including no DBpedia payload indexes.
 
 All six restored collections were verified green with their expected point counts. The live Qdrant state therefore continues to support the existing reproduction workflow.
+
+## Complete optimized results
+
+The `optimized-results/` directory reports the revised valid@5, success@5, score, and timing values from the optimized runs. It contains one dataset-level and one cross-dataset-average CSV for each embedding model.
+
+Regenerate those four files from the six ignored structured run artifacts:
+
+```powershell
+python scripts/generate_optimized_report.py `
+    results/runs/atmonto-minilm-optimized.json `
+    results/runs/atmonto-bge-optimized.json `
+    results/runs/brick-minilm-optimized.json `
+    results/runs/brick-bge-optimized.json `
+    results/runs/dbpedia-minilm-v2-optimized.json `
+    results/runs/dbpedia-bge-v2-optimized.json `
+    --output-dir results/index-optimization/optimized-results
+```
+
+The generator requires exactly one 50-query run for every dataset/model pair and rejects incomplete input matrices.

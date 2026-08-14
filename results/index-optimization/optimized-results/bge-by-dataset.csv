@@ -1,0 +1,22 @@
+dataset,method,cap,valid_at_5,success_at_5,score,time_seconds
+ATMONTO,Unconstrained,5,0.8400,0.8400,0.6492,0.0069
+ATMONTO,Pre-hoc,5,1.0000,1.0000,0.6526,0.0124
+ATMONTO,Post-hoc,25,0.8440,0.8400,0.5613,0.0100
+ATMONTO,Post-hoc,100,0.8560,0.8400,0.5612,0.0167
+ATMONTO,Post-hoc,200,0.8800,0.8800,0.5732,0.0171
+ATMONTO,Post-hoc,400,0.8800,0.8800,0.5732,0.0333
+ATMONTO,Post-hoc,2000,0.9600,0.9600,0.6262,0.1471
+Brick,Unconstrained,5,0.6480,0.5000,0.7383,0.0064
+Brick,Pre-hoc,5,1.0000,1.0000,0.7420,0.0108
+Brick,Post-hoc,25,0.7280,0.7200,0.5580,0.0093
+Brick,Post-hoc,100,0.7680,0.7600,0.5830,0.0180
+Brick,Post-hoc,200,0.7920,0.7800,0.5982,0.0251
+Brick,Post-hoc,400,0.8080,0.8000,0.6272,0.0580
+Brick,Post-hoc,2000,0.9040,0.9000,0.6817,0.2952
+DBpedia US Civic Geography,Unconstrained,5,0.6320,0.3800,0.6080,0.0066
+DBpedia US Civic Geography,Pre-hoc,5,1.0000,1.0000,0.6026,0.0116
+DBpedia US Civic Geography,Post-hoc,25,0.8760,0.8400,0.5601,0.0100
+DBpedia US Civic Geography,Post-hoc,100,0.9160,0.9000,0.5592,0.0133
+DBpedia US Civic Geography,Post-hoc,200,0.9240,0.9200,0.5699,0.0179
+DBpedia US Civic Geography,Post-hoc,400,0.9400,0.9400,0.5697,0.0323
+DBpedia US Civic Geography,Post-hoc,2000,0.9560,0.9400,0.5805,0.1605
