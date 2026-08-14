@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "computed_at": "2026-08-14",
+  "paper_scope": "Final IEEE BigData paper state: 50-query benchmarks and final optimized Qdrant collections",
+  "recommended_table_definition": {
+    "indexed_classes": "Distinct class IRIs appearing in types_closure among indexed entity records",
+    "target_classes": "Distinct class IRIs in the union of constraint_any across the final 50-query benchmark",
+    "rdf_triples": "Unique triples in the RDF graph union actually loaded by the retained extractor; null where no triple-level source snapshot was retained"
+  },
+  "totals": {
+    "datasets": 3,
+    "queries": 150,
+    "indexed_entities": 79232
+  },
+  "datasets": [
+    {
+      "id": "atmonto-enriched-v1",
+      "name": "ATMONTO",
+      "domain": "Air traffic management",
+      "rdf": {
+        "source_file_count": 29,
+        "sum_of_per_file_triples": 2931864,
+        "unique_union_triples_loaded_by_pipeline": 2931368,
+        "scope": "All 29 Turtle files listed in configs/sources/atmonto.json were unioned before the extractor selected entity families; the indexed entity set is therefore a curated/capped subset of this RDF graph, not every RDF subject.",
+        "upstream_is_larger_than_indexed_subset": true
+      },
+      "indexed_entities": {
+        "processed_records": 36655,
+        "qdrant_point_counts": {
+          "atmonto_minilm_enriched": 36655,
+          "atmonto_bge_large_en_v1_5_enriched": 36655
+        }
+      },
+      "classes": {
+        "schema_declared_owl_or_rdfs_classes": 2466,
+        "distinct_direct_types_in_indexed_entities": 7,
+        "distinct_types_closure_classes_in_indexed_entities": 22
+      },
+      "type_cardinality_per_entity": {
+        "direct_types": {"minimum": 1, "median": 1, "maximum": 2},
+        "types_closure": {"minimum": 3, "median": 7, "maximum": 10}
+      },
+      "operational_type_families": {
+        "definition": "Configured extractor target types represented by at least one indexed entity",
+        "represented_count": 6,
+        "configured_count": 8,
+        "counts": {
+          "AirspaceRouteSegment": 8000,
+          "InternationalAirport": 5145,
+          "IntersectionFix": 8000,
+          "LatLonFix": 8000,
+          "METARreport": 2488,
+          "TAFmeteorologicalCondition": 5022,
+          "PhysicalRunway": 0,
+          "OperationalRunway": 0
+        }
+      },
+      "benchmark": {
+        "file": "benchmarks/atmonto.json",
+        "queries": 50,
+        "distinct_constraint_families": 5,
+        "distinct_target_class_iris": 6,
+        "constraint_frequencies": [
+          {"constraint_any": ["https://data.nasa.gov/ontologies/atmonto/ATM#AirspaceRouteSegment"], "queries": 12},
+          {"constraint_any": ["https://data.nasa.gov/ontologies/atmonto/ATM#IntersectionFix", "https://data.nasa.gov/ontologies/atmonto/ATM#LatLonFix"], "queries": 12},
+          {"constraint_any": ["https://data.nasa.gov/ontologies/atmonto/NAS#Airport"], "queries": 6},
+          {"constraint_any": ["https://data.nasa.gov/ontologies/atmonto/data#METARreport"], "queries": 10},
+          {"constraint_any": ["https://data.nasa.gov/ontologies/atmonto/data#TAFmeteorologicalCondition"], "queries": 10}
+        ]
+      },
+      "source_files": {
+        "manifest": "configs/sources/atmonto.json",
+        "processed_dataset": "datasets/entities_enriched.jsonl",
+        "legacy_extractor": "entity_extractor_enriched.py (retained in the parent legacy workspace, not this repository)",
+        "upstream_url": "https://data.nasa.gov/dataset/the-nasa-air-traffic-management-ontology-atmonto"
+      }
+    },
+    {
+      "id": "brick-mortardata-enriched-v1",
+      "name": "Brick",
+      "domain": "Building systems and HVAC",
+      "rdf": {
+        "source_file_count": 46,
+        "tbox_file_count": 1,
+        "abox_file_count": 45,
+        "sum_of_per_file_triples": 123123,
+        "unique_union_triples_loaded_by_pipeline": 121209,
+        "tbox_unique_triples": 53960,
+        "scope": "The pipeline loaded the retained Brick TBox plus 45 selected Mortar building/model Turtle files. This is a selected Mortar corpus, not all Brick deployments or all possible Brick data.",
+        "upstream_is_larger_than_indexed_subset": true
+      },
+      "indexed_entities": {
+        "processed_records": 19388,
+        "qdrant_point_counts": {
+          "brick_mortardata_minilm_enriched": 19388,
+          "brick_mortardata_bge_large_en_v1_5_enriched": 19388
+        }
+      },
+      "classes": {
+        "schema_declared_owl_or_rdfs_classes": 1786,
+        "distinct_direct_types_in_indexed_entities": 85,
+        "distinct_types_closure_classes_in_indexed_entities": 130
+      },
+      "type_cardinality_per_entity": {
+        "direct_types": {"minimum": 1, "median": 1, "maximum": 2},
+        "types_closure": {"minimum": 1, "median": 7, "maximum": 10}
+      },
+      "operational_type_families": {
+        "definition": "Extractor-assigned semantic bucket represented among indexed entities",
+        "represented_count": 4,
+        "counts": {"equipment": 3151, "location": 4275, "other": 165, "point": 11797, "system": 0}
+      },
+      "benchmark": {
+        "file": "benchmarks/brick.json",
+        "queries": 50,
+        "distinct_constraint_families": 31,
+        "distinct_target_class_iris": 35,
+        "constraint_frequencies": [
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Air_Flow_Setpoint", "https://brickschema.org/schema/Brick#Supply_Air_Flow_Setpoint"], "queries": 2},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Air_Handler_Unit"], "queries": 3},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Chilled_Water_Return_Temperature_Sensor"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Chilled_Water_Supply_Temperature_Sensor"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Chiller"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Cooling_Command", "https://brickschema.org/schema/Brick#Valve_Command"], "queries": 2},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Damper"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Damper_Position_Command", "https://brickschema.org/schema/Brick#Damper_Position_Setpoint"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Discharge_Air_Temperature_Sensor"], "queries": 2},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Floor"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#HVAC_Zone"], "queries": 3},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Heating_Command"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Heating_Command", "https://brickschema.org/schema/Brick#Mode"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Mixed_Air_Temperature_Sensor"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Occupancy_Sensor"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Occupied_Cooling_Temperature_Setpoint"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Occupied_Heating_Temperature_Setpoint"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Outside_Air_Temperature_Sensor"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#RVAV", "https://brickschema.org/schema/Brick#VAV"], "queries": 2},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Reheat_Coil"], "queries": 2},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Return_Air_Temperature_Sensor"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Room"], "queries": 2},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Start_Stop_Command"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Supply_Air_Flow_Sensor"], "queries": 2},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Supply_Air_Static_Pressure_Sensor"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Supply_Air_Temperature_Sensor"], "queries": 2},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Supply_Air_Temperature_Setpoint"], "queries": 3},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Unoccupied_Air_Temperature_Cooling_Setpoint"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Unoccupied_Air_Temperature_Heating_Setpoint"], "queries": 1},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Zone_Air_Temperature_Sensor"], "queries": 4},
+          {"constraint_any": ["https://brickschema.org/schema/Brick#Zone_Air_Temperature_Setpoint"], "queries": 3}
+        ]
+      },
+      "source_files": {
+        "manifest": "configs/sources/brick.json",
+        "processed_dataset": "datasets/brick_entities_enriched.jsonl",
+        "legacy_extractor": "entity_extractor_brick_enriched.py (retained in the parent legacy workspace, not this repository)",
+        "upstream_urls": ["https://brickschema.org/resources/", "https://brickschema.org/ttl/mortar/", "https://huggingface.co/datasets/gtfierro/mortargraphs"]
+      }
+    },
+    {
+      "id": "dbpedia-us-civic-places-enriched-v1",
+      "name": "DBpedia US Civic Geography",
+      "domain": "United States civic places and institutions",
+      "rdf": {
+        "source_file_count": null,
+        "unique_union_triples_loaded_by_pipeline": null,
+        "exact_count_status": "not_determinable",
+        "reason": "The pipeline queried a mutable DBpedia SPARQL endpoint and retained entity cards, not a triple-level RDF snapshot or complete query-response archive. Counting card fields as RDF triples would be incorrect.",
+        "scope": "Deduplicated DBpedia resources with dbo:country dbr:United_States directly asserted and at least one of 15 configured target classes: EducationalInstitution, University, School, City, Town, Village, ArchitecturalStructure, Building, ReligiousBuilding, Infrastructure, Dam, Venue, Stadium, Library, or Hospital. The extraction also fetched DBpedia ontology direct types, subclass closure, labels/abstracts, location relations, and selected facts. This is not all DBpedia and not all US resources.",
+        "upstream_is_larger_than_indexed_subset": true,
+        "retrieval_date": "2026-04-30"
+      },
+      "indexed_entities": {
+        "processed_records": 23189,
+        "qdrant_point_counts": {
+          "dbpedia_us_civic_places_minilm_enriched": 23189,
+          "dbpedia_us_civic_places_bge_large_en_v1_5_enriched": 23189
+        }
+      },
+      "classes": {
+        "schema_declared_owl_or_rdfs_classes": null,
+        "schema_count_status": "not_determinable_from_retained_state",
+        "distinct_direct_types_in_indexed_entities": 69,
+        "distinct_types_closure_classes_in_indexed_entities": 75
+      },
+      "type_cardinality_per_entity": {
+        "direct_types": {"minimum": 2, "median": 5, "maximum": 12},
+        "types_closure": {"minimum": 2, "median": 6, "maximum": 13}
+      },
+      "operational_type_families": {
+        "definition": "Configured extraction target classes represented in the retained target_classes field",
+        "represented_count": 12,
+        "configured_count": 15,
+        "counts": {"Building": 2071, "City": 2713, "Dam": 809, "Hospital": 94, "Library": 180, "ReligiousBuilding": 530, "School": 4111, "Stadium": 133, "Town": 4974, "University": 939, "Venue": 554, "Village": 7529, "EducationalInstitution": 0, "ArchitecturalStructure": 0, "Infrastructure": 0},
+        "note": "Counts overlap because one entity can match multiple target classes. Zero represented target_classes can still appear as superclass constraints in the benchmark and types_closure."
+      },
+      "benchmark": {
+        "file": "benchmarks/dbpedia-us-civic-places-v2.json",
+        "experiment_override_files": ["configs/experiments/dbpedia-minilm-v2.json", "configs/experiments/dbpedia-bge-v2.json"],
+        "queries": 50,
+        "distinct_constraint_families": 16,
+        "distinct_target_class_iris": 14,
+        "constraint_frequencies": [
+          {"constraint_any": ["http://dbpedia.org/ontology/ArchitecturalStructure", "http://dbpedia.org/ontology/Building"], "queries": 2},
+          {"constraint_any": ["http://dbpedia.org/ontology/Building"], "queries": 4},
+          {"constraint_any": ["http://dbpedia.org/ontology/City"], "queries": 4},
+          {"constraint_any": ["http://dbpedia.org/ontology/Dam"], "queries": 4},
+          {"constraint_any": ["http://dbpedia.org/ontology/EducationalInstitution"], "queries": 2},
+          {"constraint_any": ["http://dbpedia.org/ontology/Hospital"], "queries": 4},
+          {"constraint_any": ["http://dbpedia.org/ontology/Library"], "queries": 4},
+          {"constraint_any": ["http://dbpedia.org/ontology/ReligiousBuilding"], "queries": 4},
+          {"constraint_any": ["http://dbpedia.org/ontology/School"], "queries": 4},
+          {"constraint_any": ["http://dbpedia.org/ontology/Stadium"], "queries": 2},
+          {"constraint_any": ["http://dbpedia.org/ontology/Stadium", "http://dbpedia.org/ontology/Venue"], "queries": 1},
+          {"constraint_any": ["http://dbpedia.org/ontology/Town"], "queries": 3},
+          {"constraint_any": ["http://dbpedia.org/ontology/Town", "http://dbpedia.org/ontology/Village"], "queries": 1},
+          {"constraint_any": ["http://dbpedia.org/ontology/University"], "queries": 4},
+          {"constraint_any": ["http://dbpedia.org/ontology/Venue"], "queries": 3},
+          {"constraint_any": ["http://dbpedia.org/ontology/Village"], "queries": 4}
+        ]
+      },
+      "source_files": {
+        "manifest": "configs/sources/dbpedia-us-civic-places.json",
+        "processed_dataset": "datasets/dbpedia_us_civic_places_entities_enriched.jsonl",
+        "legacy_extractor": "entity_extractor_dbpedia_us_civic_places_enriched.py (retained in the parent legacy workspace, not this repository)",
+        "sparql_endpoint": "https://dbpedia.org/sparql",
+        "upstream_urls": ["https://www.dbpedia.org/resources/", "https://databus.dbpedia.org/dbpedia/collections/latest-core"]
+      }
+    }
+  ],
+  "provenance": {
+    "processed_dataset_verification": "PYTHONPATH=src python -m ontology_retrieval.cli data verify <dataset-config>; verified record count, byte count, and SHA-256 for all three tracked JSONL files",
+    "rdf_counts": "Read-only rdflib Graph parse of the exact local files enumerated by configs/sources/atmonto.json and configs/sources/brick.json; report len(unioned_graph), explicit rdf:type owl:Class/rdfs:Class union, and per-file sums. This reproduces the graph-union behavior of the legacy extractors.",
+    "entity_class_counts": "Streaming JSON parse of each tracked datasets/*.jsonl file; set union of types and types_closure and statistics of their list lengths",
+    "benchmark_counts": "Direct JSON parse of benchmarks/atmonto.json, benchmarks/brick.json, and the final DBpedia override benchmarks/dbpedia-us-civic-places-v2.json; constraint families canonicalized as order-insensitive sets before counting",
+    "qdrant_counts": "GET http://localhost:6333/collections/<collection> on 2026-08-14 for all six final collections; all status=green",
+    "source_manifests": ["configs/sources/atmonto.json", "configs/sources/brick.json", "configs/sources/dbpedia-us-civic-places.json"],
+    "dataset_configs": ["configs/datasets/atmonto.json", "configs/datasets/brick.json", "configs/datasets/dbpedia-us-civic-places.json"]
+  },
+  "limitations": [
+    "The exact ATMONTO and Brick RDF counts were computed from local source files whose hashes are preserved in source manifests, but the RDF source bundles themselves are not tracked in this repository.",
+    "No exact DBpedia source triple count or total schema-class count can be established from the retained final state because the 2026-04-30 live SPARQL responses/full ontology snapshot were not frozen.",
+    "Ontology type family is not a shared formal field across datasets; optional family counts use each extractor's explicit operational grouping and are labeled accordingly."
+  ]
+}
