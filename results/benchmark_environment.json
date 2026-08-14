@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-08-14",
+  "scope": "Lab machine that generated results/runs/*-final-optimized.json",
+  "experiments_rerun_during_capture": false,
+  "operating_system": {
+    "caption": "Microsoft Windows 11 Enterprise",
+    "version": "10.0.26200",
+    "build": "26200",
+    "architecture": "64-bit"
+  },
+  "cpu": {
+    "model": "Intel(R) Core(TM) Ultra 9 285K",
+    "physical_cores": 24,
+    "logical_processors": 24
+  },
+  "memory": {
+    "total_physical_bytes": 33775415296,
+    "total_physical_gib": 31.46,
+    "nominal_gb": 32
+  },
+  "gpus": [
+    {
+      "model": "NVIDIA RTX 4000 Ada Generation",
+      "memory_mib": 20475,
+      "driver_version": "571.59",
+      "kind": "discrete"
+    },
+    {
+      "model": "Intel(R) Graphics",
+      "driver_version": "32.0.101.6881",
+      "kind": "integrated"
+    }
+  ],
+  "pytorch_cuda": {
+    "available": false,
+    "device_count": 0,
+    "note": "The project Python environment did not expose the installed NVIDIA GPU to PyTorch."
+  },
+  "software": {
+    "python": "3.13.5",
+    "docker_client": "29.2.1",
+    "docker_server": "29.2.1",
+    "qdrant": "1.17.0",
+    "qdrant_commit": "4ab6d2ee0f6c718667e553b1055f3e944fef025f",
+    "qdrant_image_digest": "sha256:f1c7272cdac52b38c1a0e89313922d940ba50afd90d593a1605dbbc214e66ffb",
+    "qdrant-client": "1.17.0",
+    "sentence-transformers": "5.4.0",
+    "torch": "2.11.0",
+    "transformers": "5.5.3"
+  },
+  "qdrant_connection": {
+    "same_physical_machine_as_python_client": true,
+    "url": "http://localhost:6333",
+    "container_network_mode": "bridge",
+    "host_port": 6333,
+    "container_port": 6333,
+    "timing_includes_localhost_http_round_trip": true
+  },
+  "timing_boundary": {
+    "implementation": "src/ontology_retrieval/evaluate.py::_query",
+    "clock": "time.perf_counter",
+    "includes": [
+      "QdrantClient query serialization/deserialization",
+      "localhost HTTP request and response",
+      "Qdrant query processing"
+    ],
+    "excludes": [
+      "natural-language query embedding",
+      "local post-hoc validity filtering",
+      "post-hoc loop overhead outside timed Qdrant calls"
+    ],
+    "posthoc_behavior": "Reported post-hoc latency sums all timed Qdrant query_points calls issued for that query and cap."
+  },
+  "experiment_implementation_commit": "ad9e7cccb279d96b1ed8be3c74f006942efcf530",
+  "provenance_commands": [
+    "Windows CIM queries for OS, CPU, physical memory, and video controllers",
+    "nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader",
+    "project venv Python --version and importlib.metadata package versions",
+    "docker version and docker inspect qdrant_dbpedia",
+    "GET http://localhost:6333/",
+    "git rev-parse HEAD"
+  ]
+}
