@@ -1,6 +1,6 @@
 # Qdrant filtered-index optimization experiment
 
-This exploratory run tested whether correcting Qdrant index coverage would accelerate pre-hoc ontology-constrained search. It is separate from the paper-v1 and DBpedia-v2 protocols and does not replace their results.
+This exploratory run tested whether correcting Qdrant index coverage would accelerate pre-hoc ontology-constrained search. It began as a separate study; the tested settings were subsequently adopted as the final reproducible clean-build configuration. Original result files remain historical baselines.
 
 ## Change under test
 
@@ -22,7 +22,7 @@ Pre-hoc search became faster in all six dataset/model combinations. MiniLM's mac
 
 The optimization also changed approximate nearest-neighbor rankings. Five pre-hoc score changes were negligible, but ATMONTO MiniLM's mean score fell by 0.008186. At the default `hnsw_ef=100`, its optimized top five overlapped exact constrained top five by only 85.6%. Raising `hnsw_ef` to 256 improved overlap to 92.4% but made that query path slower than its original baseline.
 
-Unconstrained and post-hoc metrics also changed because they began using HNSW rather than the original full scans. Large-cap post-hoc searches sometimes became slower. Therefore this configuration is not adopted as the repository default.
+Unconstrained and post-hoc metrics also changed because they began using HNSW rather than the original full scans. Large-cap post-hoc searches sometimes became slower. The configuration is now adopted as the repository default, with every strategy rerun against the same indexed state.
 
 See `pre-hoc-before-after.csv` for the six primary comparisons and `ef-sweep.csv` for constrained ANN overlap against exact filtered top-five results. Timings are single-run local wall-clock measurements and should be confirmed with repeated warm runs before publication.
 
@@ -37,7 +37,7 @@ After collecting results, all six collection snapshots were recovered and the or
 - original HNSW coverage; and
 - original payload schemas, including no DBpedia payload indexes.
 
-All six restored collections were verified green with their expected point counts. The live Qdrant state therefore continues to support the existing reproduction workflow.
+All six restored collections were verified green with their expected point counts after the exploratory test. This restoration statement describes that historical test boundary; later clean rebuilds intentionally replace the legacy state with the permanent optimized configuration.
 
 ## Complete optimized results
 

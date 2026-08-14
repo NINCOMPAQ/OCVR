@@ -30,9 +30,11 @@ def main(argv: list[str] | None = None) -> int:
     index.add_argument("experiment", type=Path)
     index.add_argument("--replace", action="store_true")
     index.add_argument("--resume", action="store_true")
+    index.add_argument("--ready-timeout-seconds", type=float, default=1800.0)
 
     verify_index = sub.add_parser("verify-index")
     verify_index.add_argument("experiment", type=Path)
+    verify_index.add_argument("--ready-timeout-seconds", type=float, default=1800.0)
 
     evaluate = sub.add_parser("evaluate")
     evaluate.add_argument("experiment", type=Path)
@@ -72,12 +74,22 @@ def main(argv: list[str] | None = None) -> int:
                 args.qdrant_url,
                 args.replace,
                 args.resume,
+                args.ready_timeout_seconds,
             )
         )
     elif args.command == "verify-index":
-        from .index import verify_collection
+        from .index import wait_for_collection_ready
 
-        print(json.dumps(verify_collection(load_experiment(args.experiment.resolve()), args.qdrant_url), indent=2))
+        print(
+            json.dumps(
+                wait_for_collection_ready(
+                    load_experiment(args.experiment.resolve()),
+                    args.qdrant_url,
+                    timeout_seconds=args.ready_timeout_seconds,
+                ),
+                indent=2,
+            )
+        )
     elif args.command == "evaluate":
         from .evaluate import run_experiment
 

@@ -10,6 +10,7 @@ from sentence_transformers import SentenceTransformer
 
 from .config import ExperimentConfig
 from .metrics import evaluate_hits, is_relevant
+from .index import verify_collection
 
 
 def load_benchmark(path: Path) -> list[dict]:
@@ -65,6 +66,7 @@ def _posthoc(client, experiment, vector, target_types, cap):
 
 
 def run_experiment(experiment: ExperimentConfig, qdrant_url: str) -> dict:
+    verify_collection(experiment, qdrant_url)
     tests = load_benchmark(experiment.dataset.benchmark)
     model = SentenceTransformer(
         experiment.model.huggingface_id,
@@ -158,4 +160,3 @@ def summarize(rows: list[dict]) -> list[dict]:
             }
         )
     return output
-

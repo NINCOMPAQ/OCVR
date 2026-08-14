@@ -125,6 +125,17 @@ ontology-retrieval index configs/experiments/dbpedia-bge.json
 
 Index construction performs dataset verification first. It refuses to overwrite an existing collection unless `--replace` is explicitly supplied. Point IDs are deterministic UUIDs derived from dataset ID and entity IRI.
 
+Every clean build uses the final optimized Qdrant configuration:
+
+- HNSW `m=16` and `ef_construct=100`;
+- `full_scan_threshold=1000` KB;
+- optimizer `indexing_threshold=1000` KB;
+- optimizer `default_segment_number=1`;
+- no quantization and in-memory HNSW; and
+- `types` and `types_closure` keyword indexes created before vector ingestion.
+
+After ingestion, `index` polls Qdrant rather than sleeping for a fixed interval. It returns only when the collection is green, has the exact expected point count and vector configuration, has both required keyword payload indexes, has the intended HNSW/optimizer settings, and has no more than one optimizer-threshold-sized appendable tail left unindexed. Qdrant defines 1 KB of indexing threshold as one 256-dimensional vector, so the permitted tail is `ceil(1000 × 256 / dimension)`: 667 MiniLM vectors or 250 BGE vectors. This follows Qdrant's optimizer semantics while rejecting the wholly unindexed legacy collections. The default readiness timeout is 1,800 seconds; override it when necessary with `--ready-timeout-seconds`.
+
 Verify every collection:
 
 ```powershell
@@ -133,7 +144,11 @@ Get-ChildItem configs/experiments/*.json | ForEach-Object {
 }
 ```
 
-Expected dimensions are 384 for MiniLM and 1,024 for BGE. All collections use cosine distance. The indexer creates keyword payload indexes for configured relevance fields.
+Expected dimensions are 384 for MiniLM and 1,024 for BGE. All collections use cosine distance. `verify-index` applies the same readiness checks and polls until they pass. Evaluation performs a one-shot readiness check before loading the embedding model, so a benchmark cannot silently run against an unready or incompatible collection.
+
+`index --resume` validates vector dimension and distance, HNSW and optimizer settings, required payload indexes, collection status, and maximum point count before reusing a collection. It ingests only missing deterministic IDs and then waits for full readiness. If compatibility checks fail, rebuild explicitly with `--replace`.
+
+The clean MiniLM/BGE integration evidence and exact resulting metadata are recorded in [results/clean-build-validation.md](results/clean-build-validation.md).
 
 ### Model revisions
 

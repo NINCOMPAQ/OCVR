@@ -43,4 +43,4 @@ If indexing is interrupted after Qdrant has accepted some batches, rerun the sam
 
 ## Filtered-index optimization study
 
-A separate exploratory study forced full HNSW coverage and filter-aware payload indexing across all six collections. It improved pre-hoc latency but changed approximate rankings and did not consistently improve post-hoc search. The paper configuration remains unchanged. See `results/index-optimization/README.md` for configuration, results, accuracy checks, and restoration details.
+A separate exploratory study forced full HNSW coverage and filter-aware payload indexing across all six collections. It improved pre-hoc latency but changed approximate rankings and did not consistently improve post-hoc search. Its Qdrant settings are now the final clean-build configuration, so all retrieval strategies are reported under the same indexed state. See `results/index-optimization/README.md` for configuration, results, and accuracy checks. Retrieval calls remain unchanged: no explicit `exact`, `hnsw_ef`, or quantization search parameters are supplied.
