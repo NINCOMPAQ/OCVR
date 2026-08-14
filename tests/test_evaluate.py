@@ -1,7 +1,7 @@
 from types import SimpleNamespace
 
-from ontology_retrieval.evaluate import _result
 from ontology_retrieval.metrics import evaluate_hits
+from ontology_retrieval.result_rows import build_result
 
 
 def test_result_retains_ranked_hits_and_query_context():
@@ -20,7 +20,7 @@ def test_result_retains_ranked_hits_and_query_context():
     test = {"id": "q001", "query": "find one", "constraint_any": ["Target"]}
     metrics = evaluate_hits(hits, test["constraint_any"], ["types_closure"], 5)
 
-    result = _result(
+    result = build_result(
         test,
         "unconstrained",
         5,

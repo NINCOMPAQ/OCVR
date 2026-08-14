@@ -11,6 +11,7 @@ from sentence_transformers import SentenceTransformer
 from .config import ExperimentConfig
 from .metrics import evaluate_hits, is_relevant
 from .index import verify_collection
+from .result_rows import build_result
 
 
 def load_benchmark(path: Path) -> list[dict]:
@@ -86,7 +87,7 @@ def run_experiment(experiment: ExperimentConfig, qdrant_url: str) -> dict:
             unconstrained, target_types, experiment.dataset.relevance_fields, experiment.top_k
         )
         rows.append(
-            _result(
+            build_result(
                 test,
                 "unconstrained",
                 experiment.top_k,
@@ -115,7 +116,7 @@ def run_experiment(experiment: ExperimentConfig, qdrant_url: str) -> dict:
             prehoc, target_types, experiment.dataset.relevance_fields, experiment.top_k
         )
         rows.append(
-            _result(
+            build_result(
                 test,
                 "pre-hoc",
                 experiment.top_k,
@@ -137,7 +138,7 @@ def run_experiment(experiment: ExperimentConfig, qdrant_url: str) -> dict:
                 hits, target_types, experiment.dataset.relevance_fields, experiment.top_k
             )
             rows.append(
-                _result(
+                build_result(
                     test,
                     "post-hoc",
                     cap,
@@ -159,46 +160,6 @@ def run_experiment(experiment: ExperimentConfig, qdrant_url: str) -> dict:
         "queries": len(tests),
         "results": rows,
         "summary": summarize(rows),
-    }
-
-
-def _result(
-    test,
-    strategy,
-    limit,
-    metrics,
-    elapsed,
-    examined,
-    requests,
-    transferred,
-    hits,
-    relevance_fields,
-):
-    return {
-        "query_id": test["id"],
-        "query": test["query"],
-        "constraint_any": test["constraint_any"],
-        "strategy": strategy,
-        "retrieval_limit": limit,
-        "valid_at_5": metrics.valid_at_k,
-        "success_at_5": metrics.success_at_k,
-        "mean_score": metrics.mean_score,
-        "time_seconds": elapsed,
-        "examined": examined,
-        "requests": requests,
-        "candidates_transferred": transferred,
-        "hits": [
-            {
-                "rank": rank,
-                "point_id": str(hit.id),
-                "score": hit.score,
-                "valid": is_relevant(
-                    hit.payload or {}, test["constraint_any"], relevance_fields
-                ),
-                "payload": hit.payload or {},
-            }
-            for rank, hit in enumerate(hits, start=1)
-        ],
     }
 
 
