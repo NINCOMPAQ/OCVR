@@ -23,6 +23,8 @@ New structured results retain three distinct post-hoc quantities:
 - `requests`: Qdrant requests issued;
 - `candidates_transferred`: total hits returned across repeated prefix requests.
 
+Result schema version 2 also retains the natural-language query, requested type constraint, and final ranked hits for every query/strategy/cap row. Each hit records its rank, Qdrant point ID, similarity score, type-valid flag, and complete returned payload. Post-hoc rows contain the accepted type-valid result list; `examined` and `candidates_transferred` continue to describe the broader candidate search needed to produce it.
+
 This preserves the paper measure while making repeated retrieval work visible.
 
 ## Interpretation warning

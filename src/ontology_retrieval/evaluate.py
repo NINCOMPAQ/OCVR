@@ -85,7 +85,20 @@ def run_experiment(experiment: ExperimentConfig, qdrant_url: str) -> dict:
         metrics = evaluate_hits(
             unconstrained, target_types, experiment.dataset.relevance_fields, experiment.top_k
         )
-        rows.append(_result(test, "unconstrained", experiment.top_k, metrics, elapsed, 5, 1, 5))
+        rows.append(
+            _result(
+                test,
+                "unconstrained",
+                experiment.top_k,
+                metrics,
+                elapsed,
+                5,
+                1,
+                5,
+                unconstrained,
+                experiment.dataset.relevance_fields,
+            )
+        )
 
         pre_filter = models.Filter(
             must=[
@@ -101,7 +114,20 @@ def run_experiment(experiment: ExperimentConfig, qdrant_url: str) -> dict:
         metrics = evaluate_hits(
             prehoc, target_types, experiment.dataset.relevance_fields, experiment.top_k
         )
-        rows.append(_result(test, "pre-hoc", experiment.top_k, metrics, elapsed, len(prehoc), 1, len(prehoc)))
+        rows.append(
+            _result(
+                test,
+                "pre-hoc",
+                experiment.top_k,
+                metrics,
+                elapsed,
+                len(prehoc),
+                1,
+                len(prehoc),
+                prehoc,
+                experiment.dataset.relevance_fields,
+            )
+        )
 
         for cap in experiment.posthoc_caps:
             hits, elapsed, examined, requests, transferred = _posthoc(
@@ -111,10 +137,21 @@ def run_experiment(experiment: ExperimentConfig, qdrant_url: str) -> dict:
                 hits, target_types, experiment.dataset.relevance_fields, experiment.top_k
             )
             rows.append(
-                _result(test, "post-hoc", cap, metrics, elapsed, examined, requests, transferred)
+                _result(
+                    test,
+                    "post-hoc",
+                    cap,
+                    metrics,
+                    elapsed,
+                    examined,
+                    requests,
+                    transferred,
+                    hits,
+                    experiment.dataset.relevance_fields,
+                )
             )
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "experiment": experiment.id,
         "dataset": experiment.dataset.id,
         "model": experiment.model.id,
@@ -125,9 +162,22 @@ def run_experiment(experiment: ExperimentConfig, qdrant_url: str) -> dict:
     }
 
 
-def _result(test, strategy, limit, metrics, elapsed, examined, requests, transferred):
+def _result(
+    test,
+    strategy,
+    limit,
+    metrics,
+    elapsed,
+    examined,
+    requests,
+    transferred,
+    hits,
+    relevance_fields,
+):
     return {
         "query_id": test["id"],
+        "query": test["query"],
+        "constraint_any": test["constraint_any"],
         "strategy": strategy,
         "retrieval_limit": limit,
         "valid_at_5": metrics.valid_at_k,
@@ -137,6 +187,18 @@ def _result(test, strategy, limit, metrics, elapsed, examined, requests, transfe
         "examined": examined,
         "requests": requests,
         "candidates_transferred": transferred,
+        "hits": [
+            {
+                "rank": rank,
+                "point_id": str(hit.id),
+                "score": hit.score,
+                "valid": is_relevant(
+                    hit.payload or {}, test["constraint_any"], relevance_fields
+                ),
+                "payload": hit.payload or {},
+            }
+            for rank, hit in enumerate(hits, start=1)
+        ],
     }
 
 

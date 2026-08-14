@@ -2,7 +2,7 @@
 
 Generated 2026-08-14 after clean rebuilding and verifying all six Qdrant collections with the permanent optimized indexing configuration. Each dataset/model run contains 50 queries; DBpedia uses the reviewed `-v2` benchmark extension.
 
-The six raw evaluator outputs are in `results/runs/*-final-optimized.json`. The four CSV files in this directory were generated with:
+The six raw evaluator outputs are in `results/runs/*-final-optimized.json`. They use result schema version 2 and retain the query text, constraint, and final ranked hits for every method and post-hoc cap. Each hit includes its rank, Qdrant point ID, score, validity flag, and full returned payload. The four CSV files in this directory were generated with:
 
 ```powershell
 python scripts/generate_optimized_report.py `
