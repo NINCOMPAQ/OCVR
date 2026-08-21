@@ -1,8 +1,8 @@
 {
-  "id": "atmonto-paper-v1-source-files",
+  "id": "atmonto-source-files",
   "status": "recovered-local-source-manifest",
   "upstream_url": "https://data.nasa.gov/dataset/the-nasa-air-traffic-management-ontology-atmonto",
-  "download_status": "The official landing page is available, but its current resource link does not expose the 29 paper source files as a verified immutable download. Publish the exact source bundle or rely on the exact derived entity-card artifact.",
+  "download_status": "The official landing page is available, but its current resource link does not expose the 29 source files as a verified immutable bundle. The exact checksummed entity-card artifact distributed with this repository is the canonical benchmark reproduction input.",
   "files": [
     {
       "path": "acInst.ttl",
@@ -152,7 +152,6 @@
   ],
   "extraction": {
     "target_type_count": 8,
-    "cap_per_type": 8000,
-    "legacy_implementation": "entity_extractor_enriched.py"
+    "cap_per_type": 8000
   }
 }
