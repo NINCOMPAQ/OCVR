@@ -121,7 +121,7 @@ def main(argv: list[str] | None = None) -> int:
         if differences:
             print("\n".join(differences))
             return 1
-        print("All deterministic paper-v1 values match the baseline.")
+        print("All deterministic benchmark values match the baseline.")
     elif args.command == "average":
         from .average import average_runs, write_average_csv
 
