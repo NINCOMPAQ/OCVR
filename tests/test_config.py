@@ -35,3 +35,5 @@ def test_benchmark_counts_match_paper_protocol():
             {"id", "name", "query", "constraint_any"} <= row.keys()
             for row in queries
         )
+
+# Temporary no-op comment to trigger a pull-request CI verification run.
