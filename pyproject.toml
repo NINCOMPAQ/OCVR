@@ -7,6 +7,7 @@ name = "ontology-retrieval"
 version = "0.1.0"
 description = "Reproducible constrained vector retrieval experiments over ontology-derived entity cards"
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.11"
 dependencies = [
   "qdrant-client==1.17.0",
