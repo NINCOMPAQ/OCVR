@@ -1,8 +1,0 @@
-dataset,method,cap,valid_at_5,success_at_5,score,time_seconds
-Average across datasets,Unconstrained,5,0.7107,0.6000,0.5144,0.0079
-Average across datasets,Pre-hoc,5,1.0000,1.0000,0.5042,0.0098
-Average across datasets,Post-hoc,25,0.8067,0.7933,0.4255,0.0084
-Average across datasets,Post-hoc,100,0.8573,0.8467,0.4494,0.0134
-Average across datasets,Post-hoc,200,0.8813,0.8733,0.4575,0.0173
-Average across datasets,Post-hoc,400,0.8933,0.8867,0.4596,0.0354
-Average across datasets,Post-hoc,2000,0.9533,0.9533,0.4828,0.1544
