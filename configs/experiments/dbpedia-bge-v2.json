@@ -1,1 +1,0 @@
-{"id":"dbpedia-us-civic-places-bge-benchmark-v2","dataset_config":"../datasets/dbpedia-us-civic-places.json","model_config":"../models/bge-large.json","benchmark":"../../benchmarks/dbpedia-us-civic-places-v2.json","collection":"dbpedia_us_civic_places_bge_large_en_v1_5_enriched","top_k":5,"posthoc_caps":[25,100,200,400,2000],"initial_fetch":25,"fetch_step":25}

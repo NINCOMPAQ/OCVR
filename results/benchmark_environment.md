@@ -1,10 +1,10 @@
-# Final benchmark execution environment
+# Benchmark execution environment
 
-Captured on 2026-08-14 from the lab machine that generated the final 50-query benchmark runs in `results/runs/*-final-optimized.json`. This record was collected without rerunning any experiment.
+Captured on 2026-08-14 from the lab machine used for the 150-query benchmark. This record was collected without rerunning any experiment.
 
 ## Hardware and operating system
 
-| Component | Final benchmark environment |
+| Component | Benchmark environment |
 |---|---|
 | Operating system | Microsoft Windows 11 Enterprise, version 10.0.26200, build 26200, 64-bit |
 | CPU | Intel(R) Core(TM) Ultra 9 285K |
@@ -27,24 +27,20 @@ Captured on 2026-08-14 from the lab machine that generated the final 50-query be
 | PyTorch (`torch`) | 2.11.0 |
 | `transformers` | 5.5.3 |
 
-Qdrant ran in Docker on the **same physical lab machine** as the Python evaluation client. The container used Docker bridge networking and published container port 6333 to host port 6333. The evaluator used its default URL, `http://localhost:6333` (`src/ontology_retrieval/cli.py`).
+Qdrant ran in Docker on the same physical lab machine as the Python evaluation client. The container used Docker bridge networking and published container port 6333 to host port 6333. The evaluator used `http://localhost:6333`.
 
 The reported retrieval latency wraps each `QdrantClient.query_points(...)` call with `time.perf_counter()` (`src/ontology_retrieval/evaluate.py::_query`). It therefore includes Python client serialization/deserialization, localhost HTTP request/response overhead, and Qdrant query processing. Post-hoc latency is the sum of those timed Qdrant calls. Query embedding occurs before the timer and is excluded; local post-hoc validity filtering and loop overhead occur outside the per-request timers and are also excluded.
 
-## Git revision
+## Experiment implementation
 
-The final experiment implementation and configuration were present at commit:
+The experiment implementation and configuration used for the recorded benchmark were present at commit:
 
 `ad9e7cccb279d96b1ed8be3c74f006942efcf530`
 
-This was `HEAD` immediately before adding this environment-only record. The environment documentation commit does not change experiment code, datasets, queries, retrieval configuration, or results.
+The environment record itself does not alter experiment code, datasets, queries, retrieval configuration, or result values.
 
 ## Collection service evidence
 
 - Qdrant root endpoint `http://localhost:6333/` reported version 1.17.0 and the commit above.
 - The running container published `6333/tcp` and `6334/tcp` on the host and reported status `running` when this record was collected.
-- `compose.yaml` pins the recovered Qdrant image digest: `qdrant/qdrant@sha256:f1c7272cdac52b38c1a0e89313922d940ba50afd90d593a1605dbbc214e66ffb`.
-
-## Collection commands
-
-The values above were read using Windows CIM (`Win32_OperatingSystem`, `Win32_Processor`, `Win32_ComputerSystem`, and `Win32_VideoController`), `nvidia-smi`, the project virtual environment's Python/package metadata, `docker version`, `docker inspect`, Qdrant's local root endpoint, and `git rev-parse HEAD`. No benchmark or retrieval command was executed.
+- `compose.yaml` pins the Qdrant image digest: `qdrant/qdrant@sha256:f1c7272cdac52b38c1a0e89313922d940ba50afd90d593a1605dbbc214e66ffb`.

@@ -53,34 +53,59 @@ def main(argv: list[str] | None = None) -> int:
     if len(models) != 2:
         errors.append(f"Expected 2 model configs, found {len(models)}")
 
-    experiments = list((ROOT / "configs" / "experiments").glob("*.json"))
-    if len(experiments) != 8:
-        errors.append(f"Expected 8 experiment configs (six paper-v1 plus two DBpedia v2), found {len(experiments)}")
+    experiments = sorted((ROOT / "configs" / "experiments").glob("*.json"))
+    if len(experiments) != 6:
+        errors.append(f"Expected 6 experiment configs, found {len(experiments)}")
 
     sources = list((ROOT / "configs" / "sources").glob("*.json"))
     if len(sources) != 3:
         errors.append(f"Expected 3 source manifests, found {len(sources)}")
 
-    expected_queries = {"atmonto.json": 50, "brick.json": 50, "dbpedia-us-civic-places-natural.json": 42, "dbpedia-us-civic-places-v2.json": 50}
+    expected_queries = {
+        "atmonto.json": 50,
+        "brick.json": 50,
+        "dbpedia-us-civic-places-natural.json": 50,
+    }
     for name, expected in expected_queries.items():
-        rows = json.loads((ROOT / "benchmarks" / name).read_text(encoding="utf-8"))
+        path = ROOT / "benchmarks" / name
+        rows = json.loads(path.read_text(encoding="utf-8"))
         if len(rows) != expected:
             errors.append(f"{name}: expected {expected} queries, found {len(rows)}")
         ids = [row.get("id") for row in rows]
         if len(ids) != len(set(ids)):
             errors.append(f"{name}: duplicate query IDs")
 
-    master = json.loads((ROOT / "results" / "paper" / "master-results.json").read_text(encoding="utf-8"))
-    if len(master.get("rows", [])) != 42:
-        errors.append("Historical master results must contain 42 rows")
+    required_results = [
+        "results/benchmark/minilm-average.csv",
+        "results/benchmark/minilm-by-dataset.csv",
+        "results/benchmark/bge-average.csv",
+        "results/benchmark/bge-by-dataset.csv",
+        "results/benchmark/valid-at-5-by-candidate-limit.pdf",
+    ]
+    for name in required_results:
+        if not (ROOT / name).is_file():
+            errors.append(f"Missing benchmark artifact: {name}")
 
-    average_csv = ROOT / "results" / "benchmark-v2" / "average-by-embedding-v2.csv"
-    if not average_csv.exists():
-        errors.append("Missing DBpedia-v2 average-by-embedding CSV")
-    elif len(average_csv.read_text(encoding="utf-8").splitlines()) != 15:
-        errors.append("Expected header plus 14 rows in average-by-embedding-v2.csv")
+    legacy_paths = [
+        "benchmarks/dbpedia-us-civic-places-v2.json",
+        "configs/experiments/dbpedia-minilm-v2.json",
+        "configs/experiments/dbpedia-bge-v2.json",
+        "results/benchmark-v2",
+        "results/final-optimized-rerun",
+        "results/paper",
+    ]
+    for name in legacy_paths:
+        if (ROOT / name).exists():
+            errors.append(f"Legacy release path should not exist: {name}")
 
-    required = ["README.md", "CITATION.cff", "compose.yaml", "pyproject.toml"]
+    required = [
+        "README.md",
+        "CITATION.cff",
+        "LICENSE",
+        "DATA_LICENSES.md",
+        "compose.yaml",
+        "pyproject.toml",
+    ]
     for name in required:
         if not (ROOT / name).is_file():
             errors.append(f"Missing required file: {name}")
@@ -92,8 +117,6 @@ def main(argv: list[str] | None = None) -> int:
         release_only.append("README.md still contains the repository URL placeholder")
     if "TODO:" in citation:
         release_only.append("CITATION.cff still contains TODO metadata")
-    if not (ROOT / "LICENSE").is_file():
-        release_only.append("LICENSE has not been selected")
     for message in release_only:
         (warnings if args.allow_unpublished_data else errors).append(message)
 

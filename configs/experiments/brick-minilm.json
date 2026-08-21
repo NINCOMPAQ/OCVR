@@ -1,1 +1,1 @@
-{"id":"brick-minilm-paper-v1","dataset_config":"../datasets/brick.json","model_config":"../models/minilm.json","collection":"brick_mortardata_minilm_enriched","top_k":5,"posthoc_caps":[25,100,200,400,2000],"initial_fetch":25,"fetch_step":25}
+{"id":"brick-minilm","dataset_config":"../datasets/brick.json","model_config":"../models/minilm.json","collection":"brick_mortardata_minilm_enriched","top_k":5,"posthoc_caps":[25,100,200,400,2000],"initial_fetch":25,"fetch_step":25}

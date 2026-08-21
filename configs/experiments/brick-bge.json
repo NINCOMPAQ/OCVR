@@ -1,1 +1,1 @@
-{"id":"brick-bge-paper-v1","dataset_config":"../datasets/brick.json","model_config":"../models/bge-large.json","collection":"brick_mortardata_bge_large_en_v1_5_enriched","top_k":5,"posthoc_caps":[25,100,200,400,2000],"initial_fetch":25,"fetch_step":25}
+{"id":"brick-bge","dataset_config":"../datasets/brick.json","model_config":"../models/bge-large.json","collection":"brick_mortardata_bge_large_en_v1_5_enriched","top_k":5,"posthoc_caps":[25,100,200,400,2000],"initial_fetch":25,"fetch_step":25}
