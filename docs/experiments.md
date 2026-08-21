@@ -1,8 +1,8 @@
 # Experiment protocol
 
-The paper compares unconstrained, pre-hoc constrained, and post-hoc constrained vector retrieval for three datasets and two embedding models.
+The submitted paper compares unconstrained, pre-hoc ontology-constrained, and post-hoc ontology-filtered vector retrieval across three datasets and two embedding models.
 
-## Paper-v1 behavior
+## Submitted benchmark behavior
 
 - `top_k` is five.
 - Unconstrained retrieval asks Qdrant for five unfiltered neighbors.
@@ -13,36 +13,34 @@ The paper compares unconstrained, pre-hoc constrained, and post-hoc constrained 
 
 `valid@5` is the number of type-valid results divided by five. Missing result slots count as invalid. `success@5` is one only when all five slots are type-valid, then averaged over queries.
 
-Historical `time` measures Qdrant request wall time and excludes query embedding. It should not be expected to match across hardware or software environments.
+Historical `time` measures Qdrant request wall time and excludes query embedding. It should not be expected to match exactly across hardware or software environments.
 
-## Clarified work measures
+## Work measures
 
-New structured results retain three distinct post-hoc quantities:
+Structured results retain three distinct post-hoc quantities:
 
 - `examined`: largest unique rank prefix inspected;
 - `requests`: Qdrant requests issued;
 - `candidates_transferred`: total hits returned across repeated prefix requests.
 
-Result schema version 2 also retains the natural-language query, requested type constraint, and final ranked hits for every query/strategy/cap row. Each hit records its rank, Qdrant point ID, similarity score, type-valid flag, and complete returned payload. Post-hoc rows contain the accepted type-valid result list; `examined` and `candidates_transferred` continue to describe the broader candidate search needed to produce it.
+Result schema version 2 also retains the natural-language query, requested type constraint, and final ranked hits for every query/strategy/cap row. Each hit records its rank, Qdrant point ID, similarity score, type-valid flag, and returned payload. Post-hoc rows contain the accepted type-valid result list; `examined` and `candidates_transferred` describe the broader candidate search needed to produce it.
 
-This preserves the paper measure while making repeated retrieval work visible.
+## Interpretation note
 
-## Interpretation warning
+Pre-hoc type validity is expected to be perfect when at least five matching entities exist because the retrieval filter and validity test use the same ontology-type metadata. It measures constraint satisfaction, not independent semantic relevance.
 
-Pre-hoc type-validity is expected to be perfect when at least five matching entities exist because the retrieval filter and validity test use the same type metadata. It measures constraint satisfaction, not independent semantic relevance.
+## DBpedia 50-query benchmark
 
-## DBpedia benchmark v2
+The submitted evaluation uses 50 ATMONTO queries, 50 Brick queries, and 50 DBpedia queries. The submitted DBpedia runs use `benchmarks/dbpedia-us-civic-places-v2.json` through `configs/experiments/dbpedia-minilm-v2.json` and `configs/experiments/dbpedia-bge-v2.json`.
 
-The paper-v1 suites contain 50 ATMONTO queries, 50 Brick queries, and 42 DBpedia queries. The 42-query DBpedia suite remains unchanged because its denominator is encoded in the published results.
+The earlier 42-query DBpedia suite is retained only as a historical development artifact. It is not the DBpedia benchmark reported in the submitted manuscript.
 
-`benchmarks/dbpedia-us-civic-places-v2.json` extends DBpedia to 50 queries under a separate protocol. Queries `q043` through `q050` cover types that were underrepresented in the original tail: Dam, Library, Hospital, EducationalInstitution, Venue, Building, and ArchitecturalStructure. They are phrased as plausible situational searches rather than class definitions. Some deliberately admit neighboring interpretations—for example, an evening-class query can evoke a school, college, or other educational institution—while retaining a defensible ontology constraint.
+Queries `q043` through `q050` extend coverage of types that were underrepresented in the earlier suite, including Dam, Library, Hospital, EducationalInstitution, Venue, Building, and ArchitecturalStructure. They are phrased as plausible situational searches rather than class definitions while retaining explicit ontology constraints for evaluation.
 
-Run the extension with `configs/experiments/dbpedia-minilm-v2.json` and `configs/experiments/dbpedia-bge-v2.json`. Results from a successful local run against the reconstructed collections are recorded in `results/benchmark-v2/README.md`.
-
-The revised average-by-embedding table uses the unchanged 50-query ATMONTO and Brick runs plus the 50-query DBpedia-v2 runs. `ontology-retrieval average` computes an unweighted arithmetic mean across those three dataset summaries for every model, strategy, and retrieval cap. Thus each ontology contributes one third of a row regardless of its query count.
+Recorded 50-query DBpedia results are documented in `results/benchmark-v2/README.md`. The macro-average-by-embedding table combines the 50-query ATMONTO, Brick, and DBpedia summaries using an unweighted arithmetic mean across datasets, so each ontology contributes one third of a reported average row.
 
 If indexing is interrupted after Qdrant has accepted some batches, rerun the same index command with `--resume`. The indexer checks collection dimension, distance, and maximum point count, discovers stable IDs already present, and embeds only missing entity cards. `--resume` and `--replace` are mutually exclusive.
 
 ## Filtered-index optimization study
 
-A separate exploratory study forced full HNSW coverage and filter-aware payload indexing across all six collections. It improved pre-hoc latency but changed approximate rankings and did not consistently improve post-hoc search. Its Qdrant settings are now the final clean-build configuration, so all retrieval strategies are reported under the same indexed state. See `results/index-optimization/README.md` for configuration, results, and accuracy checks. Retrieval calls remain unchanged: no explicit `exact`, `hnsw_ef`, or quantization search parameters are supplied.
+A separate exploratory study evaluated full HNSW coverage and filter-aware payload indexing across all six collections. The resulting Qdrant settings are the final clean-build configuration used for the submitted experiments. See `results/index-optimization/README.md` for configuration details and validation checks. Retrieval calls remain unchanged: no explicit `exact`, `hnsw_ef`, or quantization search parameters are supplied.
