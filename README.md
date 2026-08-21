@@ -202,6 +202,54 @@ The command rejects missing or duplicate dataset/model pairs and averages each m
 
 See [docs/experiments.md](docs/experiments.md) for exact metric definitions and interpretation cautions.
 
+## Local search webapp
+
+The repository also includes a local FastAPI webapp for interactive OCVR queries. It uses the same dataset, model, and Qdrant collection configs as the experiments. The app does not build, replace, or repair collections; start Qdrant and build the collections you want to query first.
+
+Install the web extra in your virtual environment:
+
+```powershell
+python -m pip install -e ".[dev,web]"
+```
+
+Start Qdrant and build, or resume, the local vector collections:
+
+```powershell
+docker compose up -d
+
+ontology-retrieval index configs/experiments/atmonto-minilm.json --resume
+ontology-retrieval index configs/experiments/atmonto-bge.json --resume
+ontology-retrieval index configs/experiments/brick-minilm.json --resume
+ontology-retrieval index configs/experiments/brick-bge.json --resume
+ontology-retrieval index configs/experiments/dbpedia-minilm.json --resume
+ontology-retrieval index configs/experiments/dbpedia-bge.json --resume
+```
+
+`--resume` is safe for interrupted builds. It validates the existing collection shape, skips deterministic point IDs already present in Qdrant, ingests the missing records, and then waits for the collection to become benchmark-ready. The webapp will report a collection as unavailable until the expected point count and index-readiness checks pass.
+
+Start the local web server:
+
+```powershell
+ontology-retrieval serve --host 127.0.0.1 --port 8000
+```
+
+Open http://127.0.0.1:8000 and run a query such as:
+
+- dataset: `ATMONTO`
+- model: `all-MiniLM-L6-v2`
+- query: `arrival route segment near Newark`
+- constraint: `AirspaceRouteSegment`
+
+The page shows unconstrained, pre-hoc constrained, and post-hoc constrained results side by side. MiniLM is the default model; BGE can be selected from the model dropdown after the dataset selector. The ontology constraint list is populated from each dataset's relevance payload fields and includes every class/type observed in the entity cards.
+
+Each constraint row includes a `?` tooltip. The app scans Turtle ontology files (`*.ttl`) in the project root, the parent workspace directory, and common ontology subdirectories, then uses `rdfs:comment` as the class definition and `rdfs:label` as the display label when a matching class URI is found. If no matching definition is available, the tooltip falls back to the full class URI and matching record count.
+
+Stop the web server with `Ctrl+C` in the terminal where it is running. To stop Qdrant without deleting built collections:
+
+```powershell
+docker compose stop
+```
+
 ## 5. Regenerate the paper table
 
 The historical paper values live in `results/paper/master-results.json`. Render them with:

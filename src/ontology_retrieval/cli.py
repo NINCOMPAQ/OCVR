@@ -57,6 +57,10 @@ def main(argv: list[str] | None = None) -> int:
     average.add_argument("runs", type=Path, nargs="+")
     average.add_argument("--output", type=Path, required=True)
 
+    serve = sub.add_parser("serve")
+    serve.add_argument("--host", default=os.getenv("OCVR_WEB_HOST", "127.0.0.1"))
+    serve.add_argument("--port", type=int, default=int(os.getenv("OCVR_WEB_PORT", "8000")))
+
     args = parser.parse_args(argv)
     if args.command == "data":
         config = load_dataset(args.config.resolve())
@@ -122,6 +126,19 @@ def main(argv: list[str] | None = None) -> int:
         from .average import average_runs, write_average_csv
 
         write_average_csv(average_runs(args.runs), args.output)
+    elif args.command == "serve":
+        import uvicorn
+
+        from .web import create_app
+
+        uvicorn.run(
+            create_app(
+                data_dir=args.data_dir,
+                qdrant_url=args.qdrant_url,
+            ),
+            host=args.host,
+            port=args.port,
+        )
     return 0
 
 
