@@ -337,5 +337,70 @@
       "http://dbpedia.org/ontology/ArchitecturalStructure"
     ],
     "id": "q042"
+  },
+  {
+    "id": "q043",
+    "name": "Holding back the river",
+    "query": "what is holding back the river upstream",
+    "constraint_any": [
+      "http://dbpedia.org/ontology/Dam"
+    ]
+  },
+  {
+    "id": "q044",
+    "name": "Borrow a book and work",
+    "query": "where can I borrow a book and get some work done",
+    "constraint_any": [
+      "http://dbpedia.org/ontology/Library"
+    ]
+  },
+  {
+    "id": "q045",
+    "name": "Old newspapers for thesis",
+    "query": "somewhere on campus to find old newspapers for my thesis",
+    "constraint_any": [
+      "http://dbpedia.org/ontology/Library"
+    ]
+  },
+  {
+    "id": "q046",
+    "name": "Possible appendicitis",
+    "query": "where should I take someone who may have appendicitis",
+    "constraint_any": [
+      "http://dbpedia.org/ontology/Hospital"
+    ]
+  },
+  {
+    "id": "q047",
+    "name": "After the ambulance",
+    "query": "where did they take him after the ambulance arrived",
+    "constraint_any": [
+      "http://dbpedia.org/ontology/Hospital"
+    ]
+  },
+  {
+    "id": "q048",
+    "name": "Evening classes",
+    "query": "a place nearby where I could take evening classes",
+    "constraint_any": [
+      "http://dbpedia.org/ontology/EducationalInstitution"
+    ]
+  },
+  {
+    "id": "q049",
+    "name": "Awards ceremony",
+    "query": "where are they holding the awards ceremony",
+    "constraint_any": [
+      "http://dbpedia.org/ontology/Venue"
+    ]
+  },
+  {
+    "id": "q050",
+    "name": "Structure beside city hall",
+    "query": "what is that large structure beside city hall",
+    "constraint_any": [
+      "http://dbpedia.org/ontology/Building",
+      "http://dbpedia.org/ontology/ArchitecturalStructure"
+    ]
   }
 ]
