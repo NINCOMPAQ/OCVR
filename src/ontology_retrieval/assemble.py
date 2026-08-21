@@ -57,5 +57,9 @@ def assemble_runs(paths: list[Path]) -> dict:
             )
     if len(rows) != 42:
         raise ValueError(f"Expected 42 aggregate rows, found {len(rows)}")
-    return {"schema_version": 1, "protocol": "paper-v1", "status": "reproduced", "rows": rows}
-
+    return {
+        "schema_version": 1,
+        "protocol": "ontology-constrained-vector-retrieval",
+        "status": "reproduced",
+        "rows": rows,
+    }
