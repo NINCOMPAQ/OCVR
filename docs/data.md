@@ -1,23 +1,20 @@
 # Data and provenance
 
-The canonical experiment inputs are three enriched, pre-embedding JSONL datasets. Each line is an entity card containing a stable IRI, human-readable embedding text (`card_text`), direct types, transitive type closure, and ontology-specific metadata.
+The canonical experiment inputs are three enriched, pre-embedding JSONL datasets. Each line is an entity card containing a stable IRI, human-readable embedding text (`card_text`), direct ontology types, transitive type closure, and dataset-specific metadata.
 
-The repository intentionally does not treat Qdrant collections or vector arrays as source data. Those are reconstructed locally using the model and experiment configurations.
+Qdrant collections and vector arrays are derived artifacts rather than source data. They are reconstructed locally from the included entity-card inputs and the pinned embedding-model configurations.
 
-## Current artifacts
+## Exact experiment inputs
 
-The exact entity-card subsets are included under `datasets/` with Git LFS. Their filenames, record counts, byte sizes, and SHA-256 hashes are in `configs/datasets/`. File-level manifests for the recovered ATMONTO and Brick upstream inputs, plus the DBpedia endpoint extraction parameters, are in `configs/sources/`.
+The entity-card inputs used by the submitted experiments are included under `datasets/` using Git LFS. Their filenames, record counts, byte sizes, and SHA-256 hashes are recorded in `configs/datasets/`.
 
-Official upstream references:
+| Dataset | Records | Entity-card input |
+|---|---:|---|
+| ATMONTO | 36,655 | `entities_enriched.jsonl` |
+| Brick/Mortar | 19,388 | `brick_entities_enriched.jsonl` |
+| DBpedia U.S. civic geography | 23,189 | `dbpedia_us_civic_places_entities_enriched.jsonl` |
 
-- NASA ATMONTO: https://data.nasa.gov/dataset/the-nasa-air-traffic-management-ontology-atmonto
-- Brick schema and Mortar model downloads: https://brickschema.org/resources/
-- Mortar graphs: https://huggingface.co/datasets/gtfierro/mortargraphs
-- DBpedia resources: https://www.dbpedia.org/resources/
-- DBpedia latest-core documentation: https://www.dbpedia.org/resources/latest-core/
-- DBpedia Databus collection: https://databus.dbpedia.org/dbpedia/collections/latest-core
-
-These links document provenance but do not currently reproduce every upstream byte used by the paper. Sampled Mortar model downloads match the local files exactly; the currently served Brick 1.4.4 Turtle file does not match the local paper TBox hash. The NASA landing page does not currently expose the local 29-file input bundle through a verified immutable download. This does not block experiment reproduction because the exact post-preprocessing, pre-embedding entity cards are included and checksummed.
+File-level manifests for recovered ATMONTO and Brick upstream inputs, plus DBpedia endpoint extraction parameters, are retained in `configs/sources/`.
 
 ## Entity-card contract
 
@@ -25,13 +22,51 @@ All datasets require:
 
 - `iri`: unique entity identifier;
 - `card_text`: exact string passed to the embedding model;
-- `types`: directly asserted types;
+- `types`: directly asserted ontology types;
 - `types_closure`: direct and inherited types used for filtering and evaluation.
 
 Brick also retains `building` and `bucket`. DBpedia retains `country` and `target_classes`.
 
-## Full provenance still to migrate
+## Upstream sources
 
-The legacy root contains the current ATMONTO, Brick, and DBpedia extraction implementations. They will be migrated into ontology-specific adapters after the included entity-card artifacts and paper baseline have been frozen. DBpedia requires special care because a live SPARQL endpoint is mutable; the release must preserve the exact pre-enrichment boundary data or reference a pinned dump.
+### ATMONTO
 
-Redistribution licenses and upstream version identifiers must be reviewed before artifact publication.
+- NASA Air Traffic Management Ontology: https://data.nasa.gov/dataset/the-nasa-air-traffic-management-ontology-atmonto
+- Richard M. Keller, *The NASA Air Traffic Management Ontology: Technical Documentation*, NASA/TM-2017-219526, 2017.
+
+The paper's retained ATMONTO source consists of 29 Turtle files. The repository preserves the exact post-processing entity-card input and its checksum so benchmark reproduction does not depend on mutable upstream hosting.
+
+### Brick and Mortar
+
+- Brick: https://brickschema.org/
+- Mortar: https://github.com/gtfierro/mortar
+- Mortar graph mirror used for provenance: https://huggingface.co/datasets/gtfierro/mortargraphs
+- Bharathan Balaji et al., “Brick: Metadata Schema for Portable Smart Building Applications,” *Applied Energy*, vol. 226, pp. 1273–1292, 2018.
+- Gabriel Fierro et al., “Mortar: An Open Testbed for Portable Building Analytics,” *ACM Transactions on Sensor Networks*, vol. 16, no. 1, 2020.
+
+The paper dataset combines the Brick ontology TBox with 45 selected Mortar building/model graphs. Sampled Mortar model downloads match the retained local source files. A currently served Brick Turtle file may differ byte-for-byte from the historical local TBox, so the exact checksummed entity-card input remains the canonical reproduction boundary.
+
+### DBpedia
+
+- DBpedia resources: https://www.dbpedia.org/
+- DBpedia licensing: https://www.dbpedia.org/imprint/
+- Jens Lehmann et al., “DBpedia: A Large-Scale, Multilingual Knowledge Base Extracted from Wikipedia,” *Semantic Web*, vol. 6, no. 2, pp. 167–195, 2015.
+
+The DBpedia benchmark is a constructed U.S. civic-geography subset retrieved from the public DBpedia SPARQL endpoint. Because a live SPARQL endpoint is mutable, the checksummed pre-embedding entity-card file is the canonical reproduction input for the submitted experiments.
+
+## Licensing and redistribution
+
+The repository's MIT license covers original project software only. It does not relicense upstream ontologies, datasets, or source-derived entity-card artifacts.
+
+Source-specific licensing and attribution details are documented in [`../DATA_LICENSES.md`](../DATA_LICENSES.md). In summary:
+
+- NASA-produced scientific data are generally not copyrighted in the United States unless otherwise marked; NASA should be acknowledged as the source and reuse must not imply endorsement.
+- Brick is BSD 3-Clause licensed.
+- The upstream Mortar repository is BSD 3-Clause licensed; the Hugging Face `mortargraphs` mirror does not currently state a separate license in its dataset metadata.
+- DBpedia releases 3.4 and later are distributed under CC BY-SA 3.0 and the GNU Free Documentation License.
+
+Users redistributing source-derived artifacts should consult the original source terms and retain required attribution/notices.
+
+## Reproduction boundary
+
+The fast reproduction path intentionally begins from the exact entity-card inputs used by the submitted experiments. Rebuilding every entity card from mutable upstream sources is a separate provenance task and is not required to reproduce the benchmark results from the preserved inputs.
