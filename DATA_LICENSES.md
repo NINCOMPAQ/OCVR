@@ -1,8 +1,17 @@
 # Dataset sources, licensing, and attribution
 
-The MIT license in this repository applies only to software authored for this project. It does **not** relicense upstream ontologies, datasets, or ontology-derived entity-card artifacts.
+The MIT license in this repository applies only to software authored for this project. It does **not** relicense upstream ontologies or datasets.
 
-The benchmark uses four upstream resources: NASA ATMONTO/National Airspace System data, Brick, Mortar building graphs, and DBpedia. Users who redistribute or reuse source-derived data should follow the applicable upstream terms described below.
+For the source-derived entity-card artifacts distributed with this repository, we use the following source-compatible treatment:
+
+| Artifact/source | Licensing treatment in this repository |
+|---|---|
+| Original project software | MIT |
+| NASA ATMONTO/NAS-derived content | No additional project license asserted; follow NASA source terms and attribution guidance |
+| Brick/Mortar-derived entity cards | BSD 3-Clause terms and upstream notices retained |
+| DBpedia-derived entity cards | CC BY-SA 3.0 selected from DBpedia's dual-license terms |
+
+Full third-party notices are reproduced in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
 
 ## NASA ATMONTO and National Airspace System data
 
@@ -15,20 +24,21 @@ The benchmark uses four upstream resources: NASA ATMONTO/National Airspace Syste
 
 NASA states that, unless otherwise marked or restricted, NASA-produced scientific data are generally not copyrighted in the United States and may be reproduced and distributed without further permission. NASA also asks users to acknowledge/cite NASA as the source and not imply NASA endorsement.
 
-The ATMONTO-derived entity cards in this repository are therefore **not licensed under this repository's MIT license**. No additional project copyright is asserted over NASA-origin facts or ontology content. Users should consult the NASA source page and any notices attached to the specific source files before redistribution.
+Accordingly, this project does not place its MIT software license over NASA-origin ontology/data content and does not assert an additional project copyright over NASA-origin facts. Users should consult the source page and any notices attached to the specific NASA source files before redistribution.
 
 ## Brick ontology
 
 **Source**
 
 - Brick project: https://brickschema.org/
+- Brick repository: https://github.com/BrickSchema/Brick
 - Bharathan Balaji et al., “Brick: Metadata Schema for Portable Smart Building Applications,” *Applied Energy*, vol. 226, pp. 1273–1292, 2018. DOI: 10.1016/j.apenergy.2018.02.091.
 
 **Use terms**
 
-Brick is distributed under the BSD 3-Clause License. The Brick Consortium's license permits redistribution and modification provided the copyright notice, conditions, and disclaimer are retained and the names of the copyright holder/contributors are not used to endorse derived products without permission.
+Brick is distributed under the BSD 3-Clause License. Redistribution and modification are permitted provided the upstream copyright notice, conditions, and disclaimer are retained and the names of the copyright holder/contributors are not used for endorsement without permission.
 
-Brick-derived ontology content and entity-card fields are not relicensed under MIT by this repository. Reuse should retain the applicable Brick attribution and BSD 3-Clause terms.
+Brick-derived ontology content in the combined Brick/Mortar entity-card artifact is therefore distributed with the applicable BSD 3-Clause notice retained in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), rather than being relicensed under MIT.
 
 ## Mortar building models
 
@@ -40,9 +50,9 @@ Brick-derived ontology content and entity-card fields are not relicensed under M
 
 **Use terms**
 
-The upstream `gtfierro/mortar` repository is distributed under the BSD 3-Clause License. The Hugging Face `mortargraphs` mirror currently does not provide a separate license declaration in its dataset metadata. Accordingly, this repository does not attempt to impose a new license on Mortar-derived building graph content.
+The upstream `gtfierro/mortar` repository is distributed under the BSD 3-Clause License. The Hugging Face `mortargraphs` mirror currently does not provide a separate license declaration in its dataset metadata.
 
-Users redistributing Mortar-derived data should retain upstream attribution and the BSD 3-Clause notice from the Mortar project and should verify whether any separately obtained graph artifact carries additional terms.
+For the combined Brick/Mortar entity-card artifact, this project retains the Mortar BSD 3-Clause notice and attribution rather than asserting a new MIT license over Mortar-origin graph content. Users who obtain graph artifacts from another host should verify whether that copy carries additional terms.
 
 ## DBpedia U.S. civic geography subset
 
@@ -56,7 +66,7 @@ Users redistributing Mortar-derived data should retain upstream attribution and 
 
 DBpedia states that releases 3.4 and later are dual-licensed under the Creative Commons Attribution-ShareAlike 3.0 license (CC BY-SA 3.0) and the GNU Free Documentation License (GFDL). DBpedia also requests attribution that keeps DBpedia URIs visible/active when possible.
 
-The DBpedia-derived entity-card subset in this repository is therefore **not covered by the repository's MIT software license**. Redistribution or adaptation of DBpedia-derived data should comply with the applicable DBpedia/Wikipedia licensing and attribution requirements, including share-alike obligations when applicable.
+For redistribution of the DBpedia-derived U.S. civic-geography entity-card subset in this repository, we select **CC BY-SA 3.0** from DBpedia's dual-license options to the extent that the subset constitutes an adaptation of DBpedia content. The entity cards retain source IRIs to support attribution. The repository's MIT software license does not apply to this data artifact.
 
 ## Repository software
 
