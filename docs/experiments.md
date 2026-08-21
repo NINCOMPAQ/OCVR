@@ -47,4 +47,4 @@ All benchmark collections use HNSW with `m=16`, `ef_construct=100`, and `full_sc
 
 If indexing is interrupted after Qdrant has accepted some batches, rerun the same index command with `--resume`. The indexer checks collection dimension, distance, and maximum point count, discovers stable IDs already present, and embeds only missing entity cards. `--resume` and `--replace` are mutually exclusive.
 
-Additional validation of the filtered-index configuration is recorded in `results/index-optimization/README.md`. Retrieval calls do not supply explicit `exact`, `hnsw_ef`, or quantization search parameters.
+Clean-build validation of all six collections is recorded in `results/clean-build-validation.md`. Retrieval calls do not supply explicit `exact`, `hnsw_ef`, or quantization search parameters.
