@@ -1,5 +1,5 @@
 {
-  "id": "brick-mortardata-paper-v1-source-files",
+  "id": "brick-mortardata-source-files",
   "status": "recovered-local-source-manifest",
   "upstream_urls": {
     "resources": "https://brickschema.org/resources/",
@@ -7,7 +7,7 @@
     "mortar_models_base": "https://brickschema.org/ttl/mortar/",
     "mortar_graphs_repository": "https://huggingface.co/datasets/gtfierro/mortargraphs"
   },
-  "download_status": "The current Mortar model URLs match sampled local files. The current Brick 1.4.4 URL does not match the paper environment TBox hash, so the exact TBox must be published or reconstructed from a pinned upstream commit.",
+  "download_status": "The current Mortar model URLs match sampled local files. The current Brick 1.4.4 Turtle file differs byte-for-byte from the retained source TBox, so the exact checksummed entity-card artifact distributed with this repository is the canonical benchmark reproduction input.",
   "files": [
     {
       "path": "brick_mortardata_models/bldg1.ttl",
@@ -242,7 +242,6 @@
   ],
   "extraction": {
     "tbox": "brick_tbox.ttl",
-    "abox_directory": "brick_mortardata_models",
-    "legacy_implementation": "entity_extractor_brick_enriched.py"
+    "abox_directory": "brick_mortardata_models"
   }
 }
