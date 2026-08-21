@@ -1,8 +1,8 @@
 # Benchmark results
 
-These artifacts correspond to the 150-query evaluation reported in the paper. Each dataset/model combination contains 50 queries, and all six Qdrant collections were clean-built and verified under the same indexing configuration before evaluation.
+These artifacts reproduce the 150-query benchmark configuration and deterministic retrieval metrics reported in the paper. Each dataset/model combination contains 50 queries, and all six Qdrant collections were clean-built and verified under the same indexing configuration before evaluation.
 
-The four CSV files summarize Valid@5, AllValid@5 (`success_at_5`), mean similarity, and retrieval time by dataset and embedding model. The post-hoc figure is provided in both PNG and vector PDF formats.
+The four CSV files summarize Valid@5, AllValid@5 (`success_at_5`), mean similarity, and retrieval time by dataset and embedding model. Validity and similarity values correspond to the reported benchmark. The timing columns are measurements from the clean-build rerun preserved in this repository and may differ from the manuscript's single-run latency measurements because wall-clock retrieval time is environment- and run-dependent. The post-hoc figure is provided in both PNG and vector PDF formats.
 
 Structured per-query outputs can be regenerated from the repository root:
 
@@ -41,4 +41,4 @@ python scripts/plot_valid_at_5.py `
   --pdf results/benchmark/valid-at-5-by-candidate-limit.pdf
 ```
 
-The average CSVs use an unweighted macro-average across ATMONTO, Brick, and DBpedia for each method/cap row. Retrieval times are local wall-clock measurements and are not expected to reproduce exactly on different hardware.
+The average CSVs use an unweighted macro-average across ATMONTO, Brick, and DBpedia for each method/cap row. Retrieval times are local wall-clock measurements and are not expected to reproduce exactly on different hardware or across repeated runs.
