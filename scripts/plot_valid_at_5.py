@@ -68,7 +68,15 @@ def main() -> int:
     parser.add_argument("--pdf", type=Path)
     args = parser.parse_args()
 
-    plt.rcParams.update({"font.size": 10, "axes.titlesize": 11, "figure.dpi": 150})
+    plt.rcParams.update(
+        {
+            "font.size": 10,
+            "axes.titlesize": 11,
+            "figure.dpi": 150,
+            "pdf.fonttype": 42,
+            "ps.fonttype": 42,
+        }
+    )
     figure, axes = plt.subplots(1, 2, figsize=(10.5, 4.2), sharey=True)
     draw_panel(axes[0], args.minilm, "all-MiniLM-L6-v2")
     draw_panel(axes[1], args.bge, "bge-large-en-v1.5")
