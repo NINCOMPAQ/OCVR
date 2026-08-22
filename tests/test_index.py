@@ -3,9 +3,9 @@ from types import SimpleNamespace
 import pytest
 
 from ontology_retrieval.index import (
+    stable_point_id,
     verify_collection_shape,
     wait_for_collection_ready,
-    stable_point_id,
 )
 
 
@@ -31,9 +31,7 @@ def _info(*, indexed=10000, payload_indexes=True):
         segments_count=2,
         payload_schema={"types": schema, "types_closure": schema} if payload_indexes else {},
         config=SimpleNamespace(
-            params=SimpleNamespace(
-                vectors=SimpleNamespace(size=384, distance="cosine")
-            ),
+            params=SimpleNamespace(vectors=SimpleNamespace(size=384, distance="cosine")),
             hnsw_config=SimpleNamespace(
                 m=16,
                 ef_construct=100,
@@ -72,6 +70,4 @@ def test_readiness_rejects_tail_above_qdrants_indexing_threshold():
 
 def test_resume_rejects_missing_payload_indexes():
     with pytest.raises(ValueError, match="missing payload index 'types'"):
-        verify_collection_shape(
-            _experiment(), _Client([_info(payload_indexes=False)])
-        )
+        verify_collection_shape(_experiment(), _Client([_info(payload_indexes=False)]))

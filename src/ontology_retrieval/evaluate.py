@@ -9,8 +9,8 @@ from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
 
 from .config import ExperimentConfig
-from .metrics import evaluate_hits, is_relevant
 from .index import verify_collection
+from .metrics import evaluate_hits, is_relevant
 from .result_rows import build_result
 
 
@@ -53,9 +53,7 @@ def _posthoc(client, experiment, vector, target_types, cap):
             identity = (hit.payload or {}).get("iri", str(hit.id))
             if identity in accepted_ids:
                 continue
-            if is_relevant(
-                hit.payload or {}, target_types, experiment.dataset.relevance_fields
-            ):
+            if is_relevant(hit.payload or {}, target_types, experiment.dataset.relevance_fields):
                 accepted.append(hit)
                 accepted_ids.add(identity)
                 if len(accepted) == experiment.top_k:
@@ -80,9 +78,7 @@ def run_experiment(experiment: ExperimentConfig, qdrant_url: str) -> dict:
             [test["query"]], normalize_embeddings=experiment.model.normalize_embeddings
         )[0].tolist()
         target_types = test["constraint_any"]
-        unconstrained, elapsed = _query(
-            client, experiment.collection, vector, experiment.top_k
-        )
+        unconstrained, elapsed = _query(client, experiment.collection, vector, experiment.top_k)
         metrics = evaluate_hits(
             unconstrained, target_types, experiment.dataset.relevance_fields, experiment.top_k
         )

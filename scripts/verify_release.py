@@ -7,7 +7,6 @@ import re
 import sys
 from pathlib import Path
 
-
 ROOT = Path(__file__).parents[1]
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 MODEL_REVISION = re.compile(r"^[0-9a-f]{40}$")

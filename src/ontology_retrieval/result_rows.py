@@ -33,9 +33,7 @@ def build_result(
                 "rank": rank,
                 "point_id": str(hit.id),
                 "score": hit.score,
-                "valid": is_relevant(
-                    hit.payload or {}, test["constraint_any"], relevance_fields
-                ),
+                "valid": is_relevant(hit.payload or {}, test["constraint_any"], relevance_fields),
                 "payload": hit.payload or {},
             }
             for rank, hit in enumerate(hits, start=1)

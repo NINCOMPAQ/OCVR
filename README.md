@@ -129,7 +129,7 @@ The exact model revisions are pinned in `configs/models/`:
 - MiniLM: `c9745ed1d9f207416be6d2e6f8de32d1f16199bf`
 - BGE: `d4aa6901d3a41ba39fb536a557fa166f842b0e09`
 
-Direct Python dependencies are pinned in `pyproject.toml`; additional package provenance from the experiment environment is recorded in `results/provenance.json`.
+Core experiment dependencies are pinned in `pyproject.toml`; optional development and web dependencies use bounded version ranges. Additional package provenance from the experiment environment is recorded in `results/provenance.json`.
 
 ## 4. Run the 150-query benchmark
 

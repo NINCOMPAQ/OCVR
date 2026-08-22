@@ -76,4 +76,3 @@ def download_dataset(config: DatasetConfig, destination: Path) -> Path:
     verify_dataset(partial, config)
     partial.replace(destination)
     return destination
-

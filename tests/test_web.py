@@ -32,7 +32,7 @@ def test_constraints_endpoint_returns_dataset_classes():
 
     assert response.status_code == 200
     values = {item["label"] for item in response.json()["constraints"]}
-    assert "Airspace route segment" in values
+    assert "AirspaceRouteSegment" in values
 
 
 def test_search_endpoint_reports_validation_errors():
