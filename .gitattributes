@@ -1,1 +1,2 @@
 datasets/*.jsonl filter=lfs diff=lfs merge=lfs -text
+provenance/source-inputs/**/*.ttl filter=lfs diff=lfs merge=lfs -text
