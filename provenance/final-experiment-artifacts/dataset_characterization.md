@@ -130,7 +130,7 @@ Namespace: `dbo:` = `http://dbpedia.org/ontology/`.
 
 ### Exactness limitations
 
-1. The exact ATMONTO and Brick RDF numbers were computed from local source files whose byte sizes and SHA-256 hashes are preserved in the tracked manifests. Those RDF bundles are not themselves tracked in this repository, so the saved counts preserve the result but a future machine needs the hash-matched source files to recompute them.
+1. The exact ATMONTO and Brick RDF numbers were computed from source files whose byte sizes and SHA-256 hashes are preserved in the tracked manifests. The exact bundles are now tracked through Git LFS under `provenance/source-inputs/atmonto/` and `provenance/source-inputs/brick/`, so the counts can be recomputed after `git lfs pull`.
 2. DBpedia’s exact triple count and full schema-class count cannot be established from the retained state. The processed 23,189-record entity-card artifact is exact and tracked, but it is not an RDF triple snapshot.
 3. “Ontology type family” is not a common formal field across all three extractors. The optional family statistics above are explicitly operational and should not be placed in a cross-dataset table without that qualification.
 4. `types_closure` class counts include represented external/root classes where present (for example OWL/RDFS, REC, Schema.org, or GoodRelations ancestors). This is intentional for the recommended operational “Indexed classes” definition.

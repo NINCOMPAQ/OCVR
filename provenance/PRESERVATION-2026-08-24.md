@@ -17,7 +17,9 @@ This private-repository preservation pass was performed before retiring the lab 
 - Three primary enriched entity-card extraction scripts.
 - Forty-six additional top-level legacy Python scripts, including the locally modified historical evaluator.
 - Complete `pip freeze --all` output from the project benchmark virtual environment.
-- Four compiled paper drafts found in Downloads:
+- Four compiled paper drafts were found in Downloads. Their identities and hashes are
+  recorded below for audit, but the draft PDFs are intentionally excluded from the
+  published software/data repository:
 
 | File | Local timestamp | Bytes | SHA-256 |
 |---|---|---:|---|
@@ -28,6 +30,9 @@ This private-repository preservation pass was performed before retiring the lab 
 
 ## Deliberately not preserved
 
+- The four historical compiled paper drafts listed above: identified and hashed, but
+  excluded from the published repository in favor of preserving the submitted manuscript
+  separately.
 - Qdrant snapshots: derived from the exact datasets, pinned models, and tracked indexing configuration.
 - Hugging Face caches: derived from pinned public model revisions.
 - Python bytecode, temporary files, Docker storage, credentials, tokens, and machine-specific caches.

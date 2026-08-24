@@ -13,7 +13,6 @@ The canonical inputs for exact paper reproduction remain the three checked-in, c
 - `source-inputs/atmonto/`: the exact 29 ATMONTO Turtle files listed and checksummed in `configs/sources/atmonto.json`.
 - `source-inputs/brick/brick_tbox.ttl`: the exact Brick TBox used by the paper pipeline.
 - `source-inputs/brick/mortardata-models/`: the exact 45 Mortar building/model Turtle files listed and checksummed in `configs/sources/brick.json`.
-- `manuscript-drafts/`: all four compiled OCVR paper PDFs found locally. These are historical drafts, not a declaration of the final submitted manuscript.
 - `environment/benchmark-venv-pip-freeze.txt`: complete package freeze from the virtual environment used for the final local benchmark work.
 - `final-experiment-artifacts/`: the six final schema-v2 per-query result files and the detailed dataset-characterization audit. These are retained here because the streamlined release tree exposes aggregate benchmark tables but not every ranked hit and validity flag.
 
