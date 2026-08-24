@@ -2,6 +2,8 @@
 
 Code and reproducibility materials for **Ontology-Constrained Vector Retrieval**.
 
+The manuscript was submitted to the **2026 IEEE International Conference on Big Data (IEEE BigData 2026)**. An acceptance decision is pending; this repository does not claim that the paper has been accepted or published.
+
 This repository compares three retrieval strategies over ontology-backed entity collections:
 
 - **Unconstrained vector retrieval**: semantic similarity only.
@@ -207,4 +209,4 @@ Software written for this repository is released under the [MIT License](LICENSE
 
 ## Citation
 
-Citation metadata for this software is provided in [`CITATION.cff`](CITATION.cff). Please also cite the relevant upstream datasets and ontologies listed above.
+Citation metadata for this software is provided in [`CITATION.cff`](CITATION.cff). Because the manuscript is submitted but not yet accepted, no archival conference-paper citation is claimed. Please also cite the relevant upstream datasets and ontologies listed above.

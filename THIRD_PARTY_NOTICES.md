@@ -53,8 +53,48 @@ DBpedia asks that DBpedia URIs remain visible/active where possible. The entity 
 
 ## NASA ATMONTO
 
-NASA states that NASA-produced scientific data are generally not copyrighted in the United States unless otherwise marked or restricted. NASA should be acknowledged as the source, and reuse must not imply NASA endorsement.
-
 Source: https://data.nasa.gov/dataset/the-nasa-air-traffic-management-ontology-atmonto
 
-No additional project copyright or software license is asserted over NASA-origin facts or ontology content. Users should consult source-specific NASA notices before redistribution.
+Creator: Richard M. Keller, National Aeronautics and Space Administration.
+
+ATMONTO's source-specific release terms are embedded under `dcterms:license` in the retained `atmontoCore.ttl`, `atmonto.ttl`, and `atmontoPlus.ttl` files. The following text is reproduced from that notice with its source list normalized as Markdown:
+
+> Release Terms, Information, and Acknowledgments
+>
+> NASA Air Traffic Management Ontology
+>
+> The US National Aeronautics and Space Administration's (NASA) Air Traffic Management (ATM) ontology was developed as a key component of a semantic data integration system built to support integration, query, and search over multiple sources of heterogeneous ATM data, including data from the US Federal Aviation Administration (FAA), the US National Oceanic and Atmospheric Administration (NOAA), NASA, and other non-governmental providers. In this data integration system, the ATM Ontology is used to bridge multiple types of aviation data models and enable cross-datasource querying; the ontology serves as the backbone upon which to overlay data from multiple sources. The ontology data model interconnects data from several different aviation realms, including flight, traffic management, aeronautical information, weather, and carrier operations.
+>
+> This work was funded by the National Aeronautics and Space Administration under the Aviation Operations and Safety Program.
+>
+> The NASA Air Traffic Management Ontology incorporates data (provided under any applicable distribution terms and conditions) from the following sources, and NASA gratefully acknowledges their contribution:
+>
+> - US Federal Aviation Administration:
+>   - Airport performance data (from Aviation System Performance Metrics database), public access
+>   - National Airspace System facility and route data (from the National Flight Data Center), public access
+>   - Airspace sector boundaries (from the Aeronautical Data Exchange), distributed with permission
+>   - Flight track and flight plan data (from Aircraft Situation Display to Industry data feed), distributed with permission
+>   - Aircraft registration data (from FAA Aircraft Registry), public access
+>   - Traffic management advisories (from Air Traffic Control System Command Center), public access
+> - US Department of Transportation
+>   - Runway data (from the Bureau of Transportation Statistics), public access
+> - US National Oceanic and Atmospheric Agency
+>   - Airport current and forecast weather data (from the National Weather Service), public access
+> - Commercial Aviation Safety Team / International Civil Aviation Organization
+>   - Aircraft make/model/series information (from the CICTT Aircraft Taxonomy), distributed with permission
+> - OpenFlights.org
+>   - Airport and airline data (from the OpenFlights Airports and Airlines databases), distributed in accordance with license and disclaimer terms
+>
+> THE DATA IS PROVIDED "AS IS" WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO, ANY WARRANTY THAT THE DATA WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE DATA WILL BE ERROR FREE OR ANY WARRANTY THAT RELATED DOCUMENTATION/RELEASE NOTES WILL CONFORM TO THE DATA PROVIDED. NASA HAS NEITHER VERIFIED NOR VALIDATED THIRD PARTY DATA, WHICH IS PROVIDED SOLELY FOR THE PURPOSE OF ILLUSTRATING USE OF THE ONTOLOGY. IN NO EVENT SHALL THE U.S. GOVERNMENT BE LIABLE FOR ANY DAMAGES, INCLUDING BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF OR RESULTING FROM OR IN ANY WAY CONNECTED WITH THIS DATA. YOU ARE PUT ON NOTICE THAT EXPORT OF ANY GOODS OR TECHNICAL DATA FROM THE UNITED STATES MAY REQUIRE SOME FORM OF EXPORT LICENSE FROM THE U.S. GOVERNMENT BEFORE THEY ARE EITHER SENT OUTSIDE OF THE UNITED STATES OR MADE AVAILABLE TO NATIONALS OF A FOREIGN COUNTRY EITHER WITHIN THE UNITED STATES OR ABROAD. FAILURE TO OBTAIN NECESSARY EXPORT LICENSES MAY RESULT IN CRIMINAL LIABILITY UNDER U.S. LAWS. NASA NEITHER REPRESENTS THAT A LICENSE SHALL NOT BE REQUIRED NOR THAT, IF REQUIRED, IT SHALL BE ISSUED. THE DATA, AND/OR ANY MODIFIED OR ENHANCED VERSION THEREOF, SHALL NOT BE OFFERED FOR SALE TO THE U.S. GOVERNMENT OR ANY OTHER ENTITY. NASA SHALL BE NEITHER LIABLE NOR RESPONSIBLE FOR ANY MAINTENANCE OR UPDATING OF THE DATA, NOR FOR CORRECTION OF ANY ERRORS IN THE DATA.
+
+No additional project copyright or MIT license is asserted over ATMONTO-origin ontology or data content. The repository acknowledges Richard M. Keller and NASA as the source and does not imply NASA endorsement.
+
+## OpenFlights content incorporated by ATMONTO
+
+ATMONTO identifies OpenFlights airport and airline databases as component sources. OpenFlights states that its Airport, Airline, Plane, and Route databases are available under the Open Database License and that rights in individual contents are licensed under the Database Contents License.
+
+- Source and attribution: https://openflights.org/data.php
+- Open Database License 1.0: https://opendatacommons.org/licenses/odbl/1-0/
+- Database Contents License: https://opendatacommons.org/licenses/dbcl/1-0/
+
+To the extent that the distributed ATMONTO material or derived entity-card database includes OpenFlights-origin database content, the source is acknowledged here and the applicable OpenFlights terms, including share-alike requirements, are retained. This data is not suitable for navigation.

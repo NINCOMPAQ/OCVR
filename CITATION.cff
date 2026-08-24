@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite the associated paper and the relevant upstream datasets/ontologies."
+message: "If you use this software, please cite this repository and the relevant upstream datasets/ontologies. An archival paper citation will be added if one becomes available."
 title: "Ontology-Constrained Vector Retrieval"
 type: software
 version: 0.1.0

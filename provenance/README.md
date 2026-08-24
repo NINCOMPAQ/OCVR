@@ -25,6 +25,6 @@ The exact 23,189-record DBpedia experimental subset is preserved as `datasets/db
 
 ## Publication and licensing
 
-These inputs were preserved in the private repository to prevent loss. Before making the repository public, confirm redistribution terms for the ATMONTO and Mortar/Brick source files. If redistribution is not authorized, keep the exact entity-card artifacts and manifests in the release and remove restricted upstream source files from the public history through an appropriate repository-publication process.
+These inputs were preserved to prevent loss. Their upstream terms and attributions are documented in `DATA_LICENSES.md` and reproduced where appropriate in `THIRD_PARTY_NOTICES.md`. In particular, the complete source-specific ATMONTO release notice is embedded in three retained ontology files and reproduced in the repository notice; Brick and the upstream Mortar repository use BSD 3-Clause; the Mortar graph mirror declares no separate dataset license; and DBpedia-derived data are treated under CC BY-SA 3.0. The repository's MIT license applies only to original project software.
 
-The manuscript search found no local Overleaf source ZIP, `.tex` manuscript, or bibliography beyond the generated result table already in the repository. Export the current Overleaf project separately if it is newer than the preserved PDFs.
+The lab-PC search found no local Overleaf source ZIP, `.tex` manuscript, or bibliography beyond the generated result table already in the repository. The authors later identified the separately held final PDF submitted to IEEE BigData 2026; it is intentionally not stored in this software/data repository. No acceptance decision has been reported.

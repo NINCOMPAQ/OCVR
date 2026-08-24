@@ -3,6 +3,16 @@
   "status": "recovered-local-source-manifest",
   "upstream_url": "https://data.nasa.gov/dataset/the-nasa-air-traffic-management-ontology-atmonto",
   "download_status": "The official landing page is available, but its current resource link does not expose the 29 source files as a verified immutable bundle. The exact checksummed entity-card artifact distributed with this repository is the canonical benchmark reproduction input.",
+  "licensing": {
+    "treatment": "ATMONTO embedded release terms; no additional project license asserted",
+    "notice_files": [
+      "atmontoCore.ttl",
+      "atmonto.ttl",
+      "atmontoPlus.ttl"
+    ],
+    "not_offered_for_sale": true,
+    "third_party_notice": "THIRD_PARTY_NOTICES.md#nasa-atmonto"
+  },
   "files": [
     {
       "path": "acInst.ttl",
