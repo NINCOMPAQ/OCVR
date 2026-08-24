@@ -237,7 +237,7 @@
     "dataset_configs": ["configs/datasets/atmonto.json", "configs/datasets/brick.json", "configs/datasets/dbpedia-us-civic-places.json"]
   },
   "limitations": [
-    "The exact ATMONTO and Brick RDF counts were computed from local source files whose hashes are preserved in source manifests, but the RDF source bundles themselves are not tracked in this repository.",
+    "The exact ATMONTO and Brick RDF counts were computed from source files whose hashes are preserved in source manifests. The exact bundles are tracked through Git LFS under provenance/source-inputs/atmonto/ and provenance/source-inputs/brick/.",
     "No exact DBpedia source triple count or total schema-class count can be established from the retained final state because the 2026-04-30 live SPARQL responses/full ontology snapshot were not frozen.",
     "Ontology type family is not a shared formal field across datasets; optional family counts use each extractor's explicit operational grouping and are labeled accordingly."
   ]
