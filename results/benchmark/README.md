@@ -4,6 +4,8 @@ These artifacts reproduce the 150-query benchmark configuration and deterministi
 
 The four CSV files summarize Valid@5, AllValid@5 (`success_at_5`), mean similarity, and retrieval time by dataset and embedding model. Validity and similarity values correspond to the reported benchmark. The timing columns are measurements from the clean-build rerun preserved in this repository and may differ from the manuscript's single-run latency measurements because wall-clock retrieval time is environment- and run-dependent. The post-hoc figure is provided in both PNG and vector PDF formats.
 
+The six final schema-v2 per-query outputs underlying these tables are preserved in [`../../provenance/final-experiment-artifacts/per-query-results/`](../../provenance/final-experiment-artifacts/per-query-results/). Their checksum manifest and the release verifier protect the preserved files and confirm that their summaries reproduce the CSV values in this directory.
+
 Structured per-query outputs can be regenerated from the repository root:
 
 ```powershell

@@ -176,9 +176,7 @@ class SearchService:
         transferred = 0
         elapsed = 0.0
         while current_limit <= cap and len(accepted) < experiment.top_k:
-            hits, request_time = self._query(
-                client, experiment.collection, vector, current_limit
-            )
+            hits, request_time = self._query(client, experiment.collection, vector, current_limit)
             elapsed += request_time
             requests += 1
             transferred += len(hits)
@@ -273,9 +271,7 @@ def _hit_row(
         "point_id": str(hit.id),
         "score": hit.score,
         "valid": bool(matched),
-        "matched_types": [
-            {"uri": value, "label": compact_type_label(value)} for value in matched
-        ],
+        "matched_types": [{"uri": value, "label": compact_type_label(value)} for value in matched],
         "payload": payload,
     }
 

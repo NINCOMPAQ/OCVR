@@ -17,7 +17,9 @@ def _data_path(config, data_dir: Path) -> Path:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="ontology-retrieval")
     parser.add_argument("--qdrant-url", default=os.getenv("QDRANT_URL", "http://localhost:6333"))
-    parser.add_argument("--data-dir", type=Path, default=Path(os.getenv("ONTOLOGY_RETRIEVAL_DATA_DIR", "datasets")))
+    parser.add_argument(
+        "--data-dir", type=Path, default=Path(os.getenv("ONTOLOGY_RETRIEVAL_DATA_DIR", "datasets"))
+    )
     sub = parser.add_subparsers(dest="command", required=True)
 
     data = sub.add_parser("data")
@@ -65,7 +67,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "data":
         config = load_dataset(args.config.resolve())
         path = _data_path(config, args.data_dir)
-        result = download_dataset(config, path) if args.data_command == "download" else verify_dataset(path, config)
+        result = (
+            download_dataset(config, path)
+            if args.data_command == "download"
+            else verify_dataset(path, config)
+        )
         print(result)
     elif args.command == "index":
         from .index import build_collection

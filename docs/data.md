@@ -14,7 +14,7 @@ The entity-card inputs used by the submitted experiments are included under `dat
 | Brick/Mortar | 19,388 | `brick_entities_enriched.jsonl` |
 | DBpedia U.S. civic geography | 23,189 | `dbpedia_us_civic_places_entities_enriched.jsonl` |
 
-File-level manifests for recovered ATMONTO and Brick upstream inputs, plus DBpedia endpoint extraction parameters, are retained in `configs/sources/`.
+File-level manifests for recovered ATMONTO and Brick upstream inputs, plus DBpedia endpoint extraction parameters, are retained in `configs/sources/`. The exact recovered ATMONTO and Brick/Mortar source files are preserved through Git LFS under `provenance/source-inputs/`. Their source-specific terms and required notices are recorded in `DATA_LICENSES.md` and `THIRD_PARTY_NOTICES.md` rather than being folded into the repository's MIT software license.
 
 ## Entity-card contract
 
@@ -34,7 +34,7 @@ Brick also retains `building` and `bucket`. DBpedia retains `country` and `targe
 - NASA Air Traffic Management Ontology: https://data.nasa.gov/dataset/the-nasa-air-traffic-management-ontology-atmonto
 - Richard M. Keller, *The NASA Air Traffic Management Ontology: Technical Documentation*, NASA/TM-2017-219526, 2017.
 
-The paper's retained ATMONTO source consists of 29 Turtle files. The repository preserves the exact post-processing entity-card input and its checksum so benchmark reproduction does not depend on mutable upstream hosting.
+The paper's retained ATMONTO source consists of 29 Turtle files. Those exact source files and the post-processing entity-card input are preserved with checksums so benchmark reproduction does not depend on mutable upstream hosting. ATMONTO's own `dcterms:license` notice is embedded in `atmontoCore.ttl`, `atmonto.ttl`, and `atmontoPlus.ttl`; it acknowledges the FAA, DOT, NOAA, CAST/ICAO, OpenFlights, and NASA funding and states the applicable warranty, export-control, and no-sale conditions.
 
 ### Brick and Mortar
 
@@ -44,7 +44,7 @@ The paper's retained ATMONTO source consists of 29 Turtle files. The repository 
 - Bharathan Balaji et al., “Brick: Metadata Schema for Portable Smart Building Applications,” *Applied Energy*, vol. 226, pp. 1273–1292, 2018.
 - Gabriel Fierro et al., “Mortar: An Open Testbed for Portable Building Analytics,” *ACM Transactions on Sensor Networks*, vol. 16, no. 1, 2020.
 
-The paper dataset combines the Brick ontology TBox with 45 selected Mortar building/model graphs. Sampled Mortar model downloads match the retained local source files. A currently served Brick Turtle file may differ byte-for-byte from the historical local TBox, so the exact checksummed entity-card input remains the canonical reproduction boundary.
+The paper dataset combines the Brick ontology TBox with 45 selected Mortar building/model graphs. The exact recovered source files are preserved under `provenance/source-inputs/brick/`. A currently served Brick Turtle file may differ byte-for-byte from the historical local TBox, so the exact checksummed entity-card input remains the canonical fast-reproduction boundary.
 
 ### DBpedia
 
@@ -60,9 +60,10 @@ The repository's MIT license covers original project software only. It does not 
 
 Source-specific licensing and attribution details are documented in [`../DATA_LICENSES.md`](../DATA_LICENSES.md). In summary:
 
-- NASA-produced scientific data are generally not copyrighted in the United States unless otherwise marked; NASA should be acknowledged as the source and reuse must not imply endorsement.
+- ATMONTO is distributed under the source-specific release terms embedded in the ontology. The notice credits NASA and the component data providers, preserves applicable third-party terms, disclaims warranties, flags possible export requirements, and states that the data or modified/enhanced versions must not be offered for sale.
+- OpenFlights-origin database content incorporated by ATMONTO remains subject to the Open Database License and Database Contents License, including source acknowledgment and applicable share-alike requirements.
 - Brick is BSD 3-Clause licensed.
-- The upstream Mortar repository is BSD 3-Clause licensed; the Hugging Face `mortargraphs` mirror does not currently state a separate license in its dataset metadata.
+- The upstream Mortar repository is BSD 3-Clause licensed. The exact graph mirror publishes the anonymized models without a separate dataset-license declaration, so this repository retains the Mortar notice and scholarly attribution and asserts no additional project license over those graphs.
 - DBpedia releases 3.4 and later are distributed under CC BY-SA 3.0 and the GNU Free Documentation License.
 
 Users redistributing source-derived artifacts should consult the original source terms and retain required attribution/notices.

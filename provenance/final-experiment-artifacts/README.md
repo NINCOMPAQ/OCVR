@@ -13,3 +13,5 @@ The canonical benchmark definitions remain in `benchmarks/`, and the release-fac
 `dataset_characterization.json` and `dataset_characterization.md` preserve the detailed counts used when characterizing the three paper datasets. The JSON version is machine-readable; the Markdown version includes the recommended paper table and provenance notes.
 
 These files are historical records of the final lab-machine state. They should not be silently regenerated or edited to match a later run.
+
+`checksums.sha256` records the SHA-256 digest of every preserved result and characterization artifact in this directory. The release verifier checks these hashes, validates the six run schemas and query coverage, and confirms that their summaries reproduce the checked-in aggregate CSV values.

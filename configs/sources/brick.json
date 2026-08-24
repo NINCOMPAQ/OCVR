@@ -8,6 +8,15 @@
     "mortar_graphs_repository": "https://huggingface.co/datasets/gtfierro/mortargraphs"
   },
   "download_status": "The current Mortar model URLs match sampled local files. The current Brick 1.4.4 Turtle file differs byte-for-byte from the retained source TBox, so the exact checksummed entity-card artifact distributed with this repository is the canonical benchmark reproduction input.",
+  "licensing": {
+    "brick": "BSD-3-Clause",
+    "mortar_repository": "BSD-3-Clause",
+    "mortar_graph_mirror": "No separate dataset license declared; retain Mortar attribution and assert no additional project license",
+    "third_party_notices": [
+      "THIRD_PARTY_NOTICES.md#brick",
+      "THIRD_PARTY_NOTICES.md#mortar"
+    ]
+  },
   "files": [
     {
       "path": "brick_mortardata_models/bldg1.ttl",

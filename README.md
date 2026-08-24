@@ -2,6 +2,8 @@
 
 Code and reproducibility materials for **Ontology-Constrained Vector Retrieval**.
 
+The manuscript was submitted to the **2026 IEEE International Conference on Big Data (IEEE BigData 2026)**. An acceptance decision is pending; this repository does not claim that the paper has been accepted or published.
+
 This repository compares three retrieval strategies over ontology-backed entity collections:
 
 - **Unconstrained vector retrieval**: semantic similarity only.
@@ -129,7 +131,7 @@ The exact model revisions are pinned in `configs/models/`:
 - MiniLM: `c9745ed1d9f207416be6d2e6f8de32d1f16199bf`
 - BGE: `d4aa6901d3a41ba39fb536a557fa166f842b0e09`
 
-Direct Python dependencies are pinned in `pyproject.toml`; additional package provenance from the experiment environment is recorded in `results/provenance.json`.
+Core experiment dependencies are pinned in `pyproject.toml`; optional development and web dependencies use bounded version ranges. Additional package provenance from the experiment environment is recorded in `results/provenance.json`.
 
 ## 4. Run the 150-query benchmark
 
@@ -157,7 +159,7 @@ python scripts/generate_optimized_report.py `
   --output-dir results/benchmark
 ```
 
-Recorded benchmark summaries and the post-hoc figure are in [`results/benchmark/`](results/benchmark/). Structured per-query run files are generated locally and intentionally not tracked.
+Recorded benchmark summaries and the post-hoc figure are in [`results/benchmark/`](results/benchmark/). The six final schema-v2 per-query runs are preserved under [`provenance/final-experiment-artifacts/per-query-results/`](provenance/final-experiment-artifacts/per-query-results/); newly reproduced runs are written to the ignored `results/runs/` directory.
 
 ## 5. Testing
 
@@ -179,6 +181,7 @@ configs/experiments/   Experiment configurations
 datasets/              Exact pre-embedding entity-card inputs (Git LFS)
 docs/                  Data, protocol, and reproduction notes
 results/               Benchmark summaries, figures, and environment records
+provenance/            Preserved detailed runs, source inputs, and forensic legacy code
 src/                   Implementation, retrieval logic, and web app
 tests/                 Deterministic unit tests
 ```
@@ -206,4 +209,4 @@ Software written for this repository is released under the [MIT License](LICENSE
 
 ## Citation
 
-Citation metadata for this software is provided in [`CITATION.cff`](CITATION.cff). Please also cite the relevant upstream datasets and ontologies listed above.
+Citation metadata for this software is provided in [`CITATION.cff`](CITATION.cff). Because the manuscript is submitted but not yet accepted, no archival conference-paper citation is claimed. Please also cite the relevant upstream datasets and ontologies listed above.

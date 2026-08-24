@@ -60,11 +60,7 @@ class FakeClient:
         )
         points = self.points
         if query_filter is not None:
-            points = [
-                point
-                for point in points
-                if TARGET in point.payload.get("types_closure", [])
-            ]
+            points = [point for point in points if TARGET in point.payload.get("types_closure", [])]
         return SimpleNamespace(points=points[:limit])
 
 
@@ -94,8 +90,6 @@ def test_search_runs_unconstrained_prehoc_and_posthoc_modes():
     unconstrained, prehoc, posthoc = result["results"]
     assert unconstrained["valid_at_k"] == 0.4
     assert prehoc["hits"][0]["valid"] is True
-    assert prehoc["hits"][0]["matched_types"] == [
-        {"uri": TARGET, "label": "AirspaceRouteSegment"}
-    ]
+    assert prehoc["hits"][0]["matched_types"] == [{"uri": TARGET, "label": "AirspaceRouteSegment"}]
     assert posthoc["hits"][0]["payload"]["label"] == "Route one"
     assert len(fake_client.calls) == 3

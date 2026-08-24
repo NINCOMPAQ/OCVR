@@ -34,6 +34,8 @@ This private-repository preservation pass was performed before retiring the lab 
 - `results/runs.zip`: a local duplicate archive whose listed JSON members already exist as tracked repository files.
 - `Ontology.lnk`: an unrelated Windows shortcut.
 
-## Remaining human action
+## Later manuscript identification
 
-No local Overleaf source archive, manuscript `.tex`, or bibliography was found. If the live Overleaf project contains newer manuscript material, download its source ZIP and final compiled PDF and preserve them outside or in an appropriate private manuscript repository before losing access. Review source-file redistribution rights before making this repository public.
+No local Overleaf source archive, manuscript `.tex`, or bibliography was found during the lab-PC preservation pass. The authors later identified a separately held final submission PDF named `IEEE_BD.pdf`; it is intentionally not copied into this repository. Its SHA-256 is `0e5c53f8fa9ac108f740a0b2169cb2aa66259cad39d19d19861dfb87f439cb64` (340,021 bytes, 10 pages). The manuscript was submitted to IEEE BigData 2026, and no acceptance decision had been made when this record was updated.
+
+An object-level font audit of that submitted PDF found no Type 3 fonts. Its DejaVu Sans figure font is embedded as a Type 0 composite font with a CIDFontType2 descendant and a `FontFile2` stream. The manuscript source remains outside this repository.

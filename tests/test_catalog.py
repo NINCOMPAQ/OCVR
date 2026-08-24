@@ -23,8 +23,7 @@ def test_catalog_deduplicates_dataset_model_pairs():
         "model_id": DEFAULT_MODEL_ID,
     }
     pairs = {
-        (experiment["dataset_id"], experiment["model_id"])
-        for experiment in catalog["experiments"]
+        (experiment["dataset_id"], experiment["model_id"]) for experiment in catalog["experiments"]
     }
     assert len(pairs) == 6
     assert len(catalog["experiments"]) == 6
@@ -32,7 +31,10 @@ def test_catalog_deduplicates_dataset_model_pairs():
 
 
 def test_compact_type_label_handles_hash_and_path_uris():
-    assert compact_type_label("https://example.test/onto#AirspaceRouteSegment") == "AirspaceRouteSegment"
+    assert (
+        compact_type_label("https://example.test/onto#AirspaceRouteSegment")
+        == "AirspaceRouteSegment"
+    )
     assert compact_type_label("http://dbpedia.org/ontology/PopulatedPlace") == "PopulatedPlace"
 
 
@@ -96,12 +98,11 @@ def test_constraint_options_use_ttl_comments_and_labels(tmp_path):
         """@prefix ex: <https://example.test/onto#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:TargetClass
-  rdf:type owl:Class ;
-  rdfs:comment "Definition from the ontology file." ;
-  rdfs:label "Target class" ;
-.
+ex:TargetClass a owl:Class ;
+  rdfs:comment "Definition from the ontology file."^^xsd:string ;
+  rdfs:label "Target class"@en .
 """,
         encoding="utf-8",
     )

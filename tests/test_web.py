@@ -3,9 +3,9 @@ from pathlib import Path
 import pytest
 
 pytest.importorskip("fastapi")
-pytest.importorskip("httpx")
+pytest.importorskip("httpx2")
 
-from fastapi.testclient import TestClient
+from starlette.testclient import TestClient
 
 from ontology_retrieval.search import SearchService
 from ontology_retrieval.web import create_app

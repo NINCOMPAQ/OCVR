@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
 from statistics import mean
-from typing import Any, Iterable
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -13,7 +14,9 @@ class HitMetrics:
     mean_score: float
 
 
-def is_relevant(payload: dict[str, Any], target_types: Iterable[str], fields: Iterable[str]) -> bool:
+def is_relevant(
+    payload: dict[str, Any], target_types: Iterable[str], fields: Iterable[str]
+) -> bool:
     targets = set(target_types)
     return any(set(payload.get(field, [])) & targets for field in fields)
 
@@ -29,4 +32,3 @@ def evaluate_hits(hits, target_types, relevance_fields, k: int) -> HitMetrics:
         success_at_k=float(relevant_count == k),
         mean_score=mean(scores) if scores else 0.0,
     )
-

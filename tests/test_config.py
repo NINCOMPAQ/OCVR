@@ -3,7 +3,6 @@ from pathlib import Path
 
 from ontology_retrieval.config import load_experiment
 
-
 ROOT = Path(__file__).parents[1]
 
 
@@ -31,7 +30,4 @@ def test_benchmark_counts_match_paper_protocol():
         experiment = load_experiment(path)
         queries = json.loads(experiment.dataset.benchmark.read_text(encoding="utf-8"))
         assert len(queries) == expected[experiment.dataset.id]
-        assert all(
-            {"id", "name", "query", "constraint_any"} <= row.keys()
-            for row in queries
-        )
+        assert all({"id", "name", "query", "constraint_any"} <= row.keys() for row in queries)
