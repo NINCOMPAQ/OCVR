@@ -241,15 +241,30 @@ def _ontology_paths(root: Path) -> tuple[Path, ...]:
     search_roots = (root, root.parent, root / "ontologies", root / "ontology", root / "ttl")
     paths = []
     seen = set()
+
+    def add(path: Path) -> None:
+        if not path.is_file():
+            return
+        resolved = path.resolve()
+        if resolved in seen:
+            return
+        seen.add(resolved)
+        paths.append(resolved)
+
     for search_root in search_roots:
         if not search_root.is_dir():
             continue
         for path in sorted(search_root.glob("*.ttl")):
-            resolved = path.resolve()
-            if resolved in seen:
-                continue
-            seen.add(resolved)
-            paths.append(resolved)
+            add(path)
+
+    # The preserved tree also contains large instance graphs. Only load the
+    # schema/TBox files needed for human-readable constraint metadata.
+    preserved = root / "provenance" / "source-inputs"
+    for path in sorted((preserved / "atmonto").glob("*.ttl")):
+        if not path.stem.lower().endswith("inst"):
+            add(path)
+    add(preserved / "brick" / "brick_tbox.ttl")
+
     return tuple(paths)
 
 
@@ -259,6 +274,13 @@ def _parse_ttl_annotations(path: Path) -> dict[str, dict[str, str]]:
     subject: str | None = None
     block_lines: list[str] = []
 
+    def finish_block() -> None:
+        nonlocal subject, block_lines
+        if subject is not None:
+            blocks.append((subject, "\n".join(block_lines)))
+        subject = None
+        block_lines = []
+
     for line in path.read_text(encoding="utf-8-sig").splitlines():
         stripped = line.strip()
         if not stripped or stripped.startswith("#"):
@@ -267,25 +289,29 @@ def _parse_ttl_annotations(path: Path) -> dict[str, dict[str, str]]:
         if prefix_match:
             prefixes[prefix_match.group(1)] = prefix_match.group(2)
             continue
-        if subject is None:
-            if stripped.startswith("@"):
-                continue
-            subject = stripped
-            block_lines = []
+        if stripped.startswith("@"):
             continue
         if stripped == ".":
-            blocks.append((subject, "\n".join(block_lines)))
-            subject = None
-            block_lines = []
+            finish_block()
             continue
-        block_lines.append(stripped)
+        if line[:1].isspace():
+            if subject is not None:
+                block_lines.append(stripped)
+            continue
+        finish_block()
+        parts = stripped.split(maxsplit=1)
+        subject = parts[0]
+        if len(parts) == 2:
+            block_lines.append(parts[1])
+
+    finish_block()
 
     annotations = {}
     for raw_subject, block in blocks:
         uri = _expand_ttl_name(raw_subject, prefixes)
         if not uri:
             continue
-        comment = _ttl_literal(block, "rdfs:comment")
+        comment = _ttl_literal(block, "rdfs:comment") or _ttl_literal(block, "skos:definition")
         label = _ttl_literal(block, "rdfs:label")
         if comment or label:
             annotations[uri] = {

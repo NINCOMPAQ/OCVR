@@ -27,4 +27,4 @@ jobs:
       - run: PYTHONPATH=src python -m pytest -q
       - run: ruff check .
       - run: ruff format --check .
-      - run: PYTHONPATH=src python scripts/verify_release.py --allow-unpublished-data
+      - run: PYTHONPATH=src python scripts/verify_release.py

@@ -98,12 +98,11 @@ def test_constraint_options_use_ttl_comments_and_labels(tmp_path):
         """@prefix ex: <https://example.test/onto#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:TargetClass
-  rdf:type owl:Class ;
-  rdfs:comment "Definition from the ontology file." ;
-  rdfs:label "Target class" ;
-.
+ex:TargetClass a owl:Class ;
+  rdfs:comment "Definition from the ontology file."^^xsd:string ;
+  rdfs:label "Target class"@en .
 """,
         encoding="utf-8",
     )
