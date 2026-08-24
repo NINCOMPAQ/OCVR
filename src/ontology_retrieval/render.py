@@ -12,7 +12,16 @@ def load_master_results(path: Path) -> dict:
 
 def render_csv(results: dict, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
-    fields = ["ontology", "model", "strategy", "retrieval_limit", "valid_at_5", "success_at_5", "time_seconds", "examined"]
+    fields = [
+        "ontology",
+        "model",
+        "strategy",
+        "retrieval_limit",
+        "valid_at_5",
+        "success_at_5",
+        "time_seconds",
+        "examined",
+    ]
     with destination.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
@@ -59,4 +68,3 @@ def render_latex(results: dict, destination: Path) -> None:
 
 def _format_examined(value: float) -> str:
     return str(int(value)) if float(value).is_integer() else f"{value:.2f}"
-

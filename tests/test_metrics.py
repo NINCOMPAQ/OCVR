@@ -29,4 +29,3 @@ def test_success_requires_all_k_results():
     result = evaluate_hits(hits, ["Target"], ["types_closure"], k=5)
     assert result.valid_at_k == 1.0
     assert result.success_at_k == 1.0
-

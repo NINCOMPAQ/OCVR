@@ -14,7 +14,7 @@ The entity-card inputs used by the submitted experiments are included under `dat
 | Brick/Mortar | 19,388 | `brick_entities_enriched.jsonl` |
 | DBpedia U.S. civic geography | 23,189 | `dbpedia_us_civic_places_entities_enriched.jsonl` |
 
-File-level manifests for recovered ATMONTO and Brick upstream inputs, plus DBpedia endpoint extraction parameters, are retained in `configs/sources/`.
+File-level manifests for recovered ATMONTO and Brick upstream inputs, plus DBpedia endpoint extraction parameters, are retained in `configs/sources/`. The exact recovered ATMONTO and Brick/Mortar source files are preserved through Git LFS under `provenance/source-inputs/`; redistribution terms must be reviewed before a public release.
 
 ## Entity-card contract
 
@@ -34,7 +34,7 @@ Brick also retains `building` and `bucket`. DBpedia retains `country` and `targe
 - NASA Air Traffic Management Ontology: https://data.nasa.gov/dataset/the-nasa-air-traffic-management-ontology-atmonto
 - Richard M. Keller, *The NASA Air Traffic Management Ontology: Technical Documentation*, NASA/TM-2017-219526, 2017.
 
-The paper's retained ATMONTO source consists of 29 Turtle files. The repository preserves the exact post-processing entity-card input and its checksum so benchmark reproduction does not depend on mutable upstream hosting.
+The paper's retained ATMONTO source consists of 29 Turtle files. Those exact source files and the post-processing entity-card input are preserved with checksums so benchmark reproduction does not depend on mutable upstream hosting.
 
 ### Brick and Mortar
 
@@ -44,7 +44,7 @@ The paper's retained ATMONTO source consists of 29 Turtle files. The repository 
 - Bharathan Balaji et al., “Brick: Metadata Schema for Portable Smart Building Applications,” *Applied Energy*, vol. 226, pp. 1273–1292, 2018.
 - Gabriel Fierro et al., “Mortar: An Open Testbed for Portable Building Analytics,” *ACM Transactions on Sensor Networks*, vol. 16, no. 1, 2020.
 
-The paper dataset combines the Brick ontology TBox with 45 selected Mortar building/model graphs. Sampled Mortar model downloads match the retained local source files. A currently served Brick Turtle file may differ byte-for-byte from the historical local TBox, so the exact checksummed entity-card input remains the canonical reproduction boundary.
+The paper dataset combines the Brick ontology TBox with 45 selected Mortar building/model graphs. The exact recovered source files are preserved under `provenance/source-inputs/brick/`. A currently served Brick Turtle file may differ byte-for-byte from the historical local TBox, so the exact checksummed entity-card input remains the canonical fast-reproduction boundary.
 
 ### DBpedia
 

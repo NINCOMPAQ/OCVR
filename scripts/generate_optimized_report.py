@@ -7,7 +7,6 @@ from collections import defaultdict
 from pathlib import Path
 from statistics import mean
 
-
 DATASET_NAMES = {
     "atmonto-enriched-v1": "ATMONTO",
     "brick-mortardata-enriched-v1": "Brick",
@@ -34,7 +33,7 @@ def load_runs(paths: list[Path]) -> list[dict]:
     if len(runs) != 6 or actual != expected:
         raise ValueError(
             "Expected one run for each dataset/model pair; "
-            f"missing={expected-actual}, extra={actual-expected}"
+            f"missing={expected - actual}, extra={actual - expected}"
         )
     if any(run.get("queries") != 50 for run in runs):
         raise ValueError("Every benchmark run must contain exactly 50 queries")

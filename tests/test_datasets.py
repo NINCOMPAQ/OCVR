@@ -9,7 +9,9 @@ from ontology_retrieval.datasets import verify_dataset
 
 def test_verify_dataset_checks_content_and_identity(tmp_path):
     path = tmp_path / "fixture.jsonl"
-    content = json.dumps({"iri": "urn:one", "card_text": "One", "types": [], "types_closure": []}) + "\n"
+    content = (
+        json.dumps({"iri": "urn:one", "card_text": "One", "types": [], "types_closure": []}) + "\n"
+    )
     path.write_text(content, encoding="utf-8")
     encoded = path.read_bytes()
     config = DatasetConfig(
@@ -32,6 +34,17 @@ def test_verify_dataset_rejects_duplicate_iris(tmp_path):
     row = {"iri": "urn:one", "card_text": "One", "types": [], "types_closure": []}
     content = json.dumps(row) + "\n" + json.dumps(row) + "\n"
     path.write_text(content, encoding="utf-8")
-    config = DatasetConfig("fixture", path.name, 2, len(content.encode()), "unused", None, "card_text", ("types", "types_closure"), ("types_closure",), tmp_path / "queries.json")
+    config = DatasetConfig(
+        "fixture",
+        path.name,
+        2,
+        len(content.encode()),
+        "unused",
+        None,
+        "card_text",
+        ("types", "types_closure"),
+        ("types_closure",),
+        tmp_path / "queries.json",
+    )
     with pytest.raises(ValueError, match="Duplicate IRI"):
         verify_dataset(path, config)

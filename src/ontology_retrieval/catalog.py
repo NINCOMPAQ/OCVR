@@ -66,9 +66,7 @@ def build_catalog(
     datasets: dict[str, dict] = {}
     models: dict[str, dict] = {}
     experiment_rows = []
-    qdrant_reachable = (
-        _qdrant_reachable(qdrant_url) if include_readiness and qdrant_url else None
-    )
+    qdrant_reachable = _qdrant_reachable(qdrant_url) if include_readiness and qdrant_url else None
 
     for experiment in experiments:
         dataset = experiment.dataset
@@ -112,9 +110,7 @@ def build_catalog(
 
     return {
         "datasets": sorted(datasets.values(), key=lambda item: item["label"]),
-        "models": sorted(
-            models.values(), key=lambda item: (not item["default"], item["label"])
-        ),
+        "models": sorted(models.values(), key=lambda item: (not item["default"], item["label"])),
         "experiments": sorted(
             experiment_rows,
             key=lambda item: (item["dataset_id"], item["model_id"]),
@@ -149,7 +145,9 @@ def collection_readiness(experiment: ExperimentConfig, qdrant_url: str) -> dict:
         errors.append(f"points expected {experiment.dataset.records}, found {info.points_count}")
     vector_config = info.config.params.vectors
     if vector_config.size != experiment.model.dimension:
-        errors.append(f"dimension expected {experiment.model.dimension}, found {vector_config.size}")
+        errors.append(
+            f"dimension expected {experiment.model.dimension}, found {vector_config.size}"
+        )
     return {
         "ready": not errors,
         "error": "; ".join(errors) if errors else None,

@@ -23,4 +23,3 @@ def test_latex_has_six_columns(tmp_path):
     text = destination.read_text(encoding="utf-8")
     assert r"\begin{longtable}{llrrrr}" in text
     assert r"\multicolumn{6}" in text
-

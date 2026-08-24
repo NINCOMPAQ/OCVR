@@ -13,9 +13,11 @@ The README is the authoritative command sequence. This document summarizes the t
 
 The model configurations pin the exact Hugging Face snapshot commits recovered from the experimental environment. The benchmark uses 50 queries each for ATMONTO, Brick, and DBpedia.
 
+For audit without rerunning Qdrant, the six final schema-v2 per-query outputs are preserved under `provenance/final-experiment-artifacts/per-query-results/`. `scripts/verify_release.py` checks their hashes, schema and query coverage, and confirms that their summaries reproduce the checked-in aggregate CSV values.
+
 ## Upstream provenance
 
-The repository also records upstream ontology/data sources and source manifests for provenance. Because several upstream resources are mutable or no longer reproduce the original source bytes exactly, the checksummed pre-embedding entity-card files are the canonical boundary for reproducing the benchmark. See `docs/data.md` and `DATA_LICENSES.md` for details.
+The repository records upstream ontology/data sources and source manifests for provenance. Exact recovered ATMONTO and Brick/Mortar source files are preserved under `provenance/source-inputs/`; the DBpedia live-endpoint response was not available. Because several upstream resources are mutable, the checksummed pre-embedding entity-card files remain the canonical boundary for reproducing the benchmark. See `docs/data.md`, `provenance/README.md`, and `DATA_LICENSES.md` for details.
 
 ## Timing
 

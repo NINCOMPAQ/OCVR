@@ -16,8 +16,15 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
-      - run: python -m pip install pytest==8.4.1
+      - run: >-
+          python -m pip install
+          pytest==8.4.1
+          ruff==0.16.4
+          "fastapi>=0.115,<1"
+          httpx2==2.12.0
       - run: git lfs fsck
       - run: python -m compileall -q src tests
       - run: PYTHONPATH=src python -m pytest -q
+      - run: ruff check .
+      - run: ruff format --check .
       - run: PYTHONPATH=src python scripts/verify_release.py --allow-unpublished-data

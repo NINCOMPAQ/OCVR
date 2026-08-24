@@ -8,7 +8,6 @@ from statistics import mean
 
 from .assemble import DISPLAY, ORDER
 
-
 STRATEGY_ORDER = {"unconstrained": 0, "pre-hoc": 1, "post-hoc": 2}
 
 
@@ -37,7 +36,9 @@ def average_runs(paths: list[Path]) -> list[dict]:
     rows = []
     for (model, strategy, cap), values in groups.items():
         if len(values) != 3:
-            raise ValueError(f"Expected three datasets for {(model, strategy, cap)}, found {len(values)}")
+            raise ValueError(
+                f"Expected three datasets for {(model, strategy, cap)}, found {len(values)}"
+            )
         rows.append(
             {
                 "model": DISPLAY[model],

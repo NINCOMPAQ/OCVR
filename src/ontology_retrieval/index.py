@@ -1,13 +1,12 @@
 from __future__ import annotations
 
-import uuid
 import time
+import uuid
 from math import ceil
 from pathlib import Path
 
 from .config import ExperimentConfig
 from .datasets import iter_entity_cards, verify_dataset
-
 
 HNSW_M = 16
 HNSW_EF_CONSTRUCT = 100
@@ -168,8 +167,7 @@ def verify_collection(experiment: ExperimentConfig, qdrant_url: str) -> dict:
         )
     if errors:
         raise ValueError(
-            f"Collection {experiment.collection!r} is not benchmark-ready: "
-            + "; ".join(errors)
+            f"Collection {experiment.collection!r} is not benchmark-ready: " + "; ".join(errors)
         )
     return _collection_report(experiment, info)
 
@@ -215,7 +213,10 @@ def wait_for_collection_ready(
             last_error = "; ".join(errors)
         except ValueError:
             raise
-        except Exception as error:
+        # Qdrant client failures can surface as several transport-specific exception
+        # classes. Treat them as transient while waiting, and report the final error
+        # if the readiness deadline expires.
+        except Exception as error:  # noqa: BLE001
             last_error = str(error)
         if time.monotonic() >= deadline:
             raise TimeoutError(
@@ -261,9 +262,7 @@ def _configuration_errors(experiment: ExperimentConfig, info) -> list[str]:
         if schema is None:
             errors.append(f"missing payload index {field!r}")
         elif _enum_value(schema.data_type) != "keyword":
-            errors.append(
-                f"payload index {field!r} expected keyword, found {schema.data_type}"
-            )
+            errors.append(f"payload index {field!r} expected keyword, found {schema.data_type}")
     return errors
 
 

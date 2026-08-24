@@ -23,8 +23,7 @@ def test_catalog_deduplicates_dataset_model_pairs():
         "model_id": DEFAULT_MODEL_ID,
     }
     pairs = {
-        (experiment["dataset_id"], experiment["model_id"])
-        for experiment in catalog["experiments"]
+        (experiment["dataset_id"], experiment["model_id"]) for experiment in catalog["experiments"]
     }
     assert len(pairs) == 6
     assert len(catalog["experiments"]) == 6
@@ -32,7 +31,10 @@ def test_catalog_deduplicates_dataset_model_pairs():
 
 
 def test_compact_type_label_handles_hash_and_path_uris():
-    assert compact_type_label("https://example.test/onto#AirspaceRouteSegment") == "AirspaceRouteSegment"
+    assert (
+        compact_type_label("https://example.test/onto#AirspaceRouteSegment")
+        == "AirspaceRouteSegment"
+    )
     assert compact_type_label("http://dbpedia.org/ontology/PopulatedPlace") == "PopulatedPlace"
 
 
